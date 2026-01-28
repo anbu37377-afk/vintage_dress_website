@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - GramVastra</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-background"></div>
+        <div class="container">
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <div class="logo">
+                        <i class="fas fa-leaf"></i>
+                        <span>GramVastra</span>
+                    </div>
+                </div>
+
+                <div class="nav-menu" id="navMenu">
+                    <a href="index.html" class="nav-link">
+                        <span>Home</span>
+                    </a>
+                    <a href="home2.html" class="nav-link">
+                        <span>Home 2</span>
+                    </a>
+                    <a href="shop.html" class="nav-link">
+                        <span>Shop</span>
+                    </a>
+                    <a href="categories.html" class="nav-link">
+                        <span>Categories</span>
+                    </a>
+                    <a href="about.html" class="nav-link">
+                        <span>About</span>
+                    </a>
+                    <a href="pages/blog.html" class="nav-link">
+                        <span>Blog</span>
+                    </a>
+                    <a href="dashboard.html" class="nav-link active">
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="pages/contact.html" class="nav-link">
+                        <span>Contact</span>
+                    </a>
+
+                    <!-- Mobile Menu Items -->
+                    <a href="pages/login.html" class="nav-link mobile-only">
+                        <span>Login</span>
+                    </a>
+                    <a href="pages/signup.html" class="nav-link mobile-only">
+                        <span>Sign Up</span>
+                    </a>
+                </div>
+
+                <div class="nav-actions">
+                    <a href="dashboard.html" class="dashboard-icon" aria-label="Dashboard">
+                       
+                    </a>
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="cart-btn" id="cartBtn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </button>
+                    <a href="pages/login.html" class="btn btn-outline">Login</a>
+                    <a href="pages/signup.html" class="btn btn-primary">Sign Up</a>
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation (Desktop) -->
+        <aside class="dashboard-sidebar">
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="#" class="sidebar-link active">
+                        <i class="fas fa-th-large"></i>
+                        <span>Overview</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-link">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span>Orders</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-link">
+                        <i class="fas fa-box-open"></i>
+                        <span>Products</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-link">
+                        <i class="fas fa-users"></i>
+                        <span>Customers</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-link">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Analytics</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-link">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <div class="dashboard-header fade-in">
+                <div>
+                    <h1 class="dashboard-title">Welcome back, Admin</h1>
+                    <p class="dashboard-date">Today is <span id="currentDate">January 28, 2026</span></p>
+                </div>
+                <a href="pages/upload-product.html" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> &nbsp; Add Product
+                </a>
+            </div>
+
+            <!-- Overview Cards -->
+            <div class="dashboard-stats-grid">
+                <div class="stat-card dashboard-animate" style="animation-delay: 0.1s;">
+                    <div class="stat-header">
+                        <div class="stat-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <span class="stat-trend trend-up">+12%</span>
+                    </div>
+                    <div class="stat-value">124</div>
+                    <div class="stat-label">Total Orders</div>
+                </div>
+
+                <div class="stat-card dashboard-animate" style="animation-delay: 0.2s;">
+                    <div class="stat-header">
+                        <div class="stat-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <span class="stat-trend trend-up">+5%</span>
+                    </div>
+                    <div class="stat-value">458</div>
+                    <div class="stat-label">Total Products</div>
+                </div>
+
+                <div class="stat-card dashboard-animate" style="animation-delay: 0.3s;">
+                    <div class="stat-header">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-friends"></i>
+                        </div>
+                        <span class="stat-trend trend-up">+8%</span>
+                    </div>
+                    <div class="stat-value">1,250</div>
+                    <div class="stat-label">New Customers</div>
+                </div>
+
+                <div class="stat-card dashboard-animate" style="animation-delay: 0.4s;">
+                    <div class="stat-header">
+                        <div class="stat-icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <span class="stat-trend trend-down">-2%</span>
+                    </div>
+                    <div class="stat-value">₹85.4k</div>
+                    <div class="stat-label">Revenue</div>
+                </div>
+            </div>
+
+            <div class="dashboard-content-grid">
+                <!-- Recent Orders -->
+                <div class="dashboard-section dashboard-animate" style="animation-delay: 0.5s;">
+                    <div class="section-header">
+                        <h3>Recent Orders</h3>
+                        <a href="#" class="view-all">View All</a>
+                    </div>
+                    <div class="recent-orders-list">
+                        <div class="order-item">
+                            <div class="order-icon">
+                                <i class="fas fa-box"></i>
+                            </div>
+                            <div class="order-info">
+                                <span class="order-id">#ORD-2563</span>
+                                <span class="order-date">2 mins ago</span>
+                            </div>
+                            <span class="order-amount">₹3,500</span>
+                        </div>
+                        <div class="order-item">
+                            <div class="order-icon">
+                                <i class="fas fa-box"></i>
+                            </div>
+                            <div class="order-info">
+                                <span class="order-id">#ORD-2562</span>
+                                <span class="order-date">1 hour ago</span>
+                            </div>
+                            <span class="order-amount">₹800</span>
+                        </div>
+                        <div class="order-item">
+                            <div class="order-icon">
+                                <i class="fas fa-box"></i>
+                            </div>
+                            <div class="order-info">
+                                <span class="order-id">#ORD-2561</span>
+                                <span class="order-date">3 hours ago</span>
+                            </div>
+                            <span class="order-amount">₹1,200</span>
+                        </div>
+                        <div class="order-item">
+                            <div class="order-icon">
+                                <i class="fas fa-box"></i>
+                            </div>
+                            <div class="order-info">
+                                <span class="order-id">#ORD-2560</span>
+                                <span class="order-date">5 hours ago</span>
+                            </div>
+                            <span class="order-amount">₹4,200</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Summary & Notifications -->
+                <div style="display: flex; flex-direction: column; gap: var(--spacing-lg);">
+                    <div class="dashboard-section dashboard-animate" style="animation-delay: 0.6s;">
+                        <div class="section-header">
+                            <h3>Product Summary</h3>
+                        </div>
+                        <div
+                            style="display: flex; gap: var(--spacing-md); align-items: center; justify-content: center; height: 150px;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--primary-color);">85%</div>
+                                <div style="font-size: 0.75rem; color: var(--text-secondary);">In Stock</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--warning);">12%</div>
+                                <div style="font-size: 0.75rem; color: var(--text-secondary);">Low Stock</div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--error);">3%</div>
+                                <div style="font-size: 0.75rem; color: var(--text-secondary);">Out of Stock</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-section dashboard-animate" style="animation-delay: 0.7s;">
+                        <div class="section-header">
+                            <h3>Notifications</h3>
+                            <a href="#" class="view-all">Clear</a>
+                        </div>
+                        <div class="notification-list">
+                            <div class="notification-item">
+                                <div class="notification-title">New Order Received</div>
+                                <div class="notification-time">You have a new order #2563</div>
+                            </div>
+                            <div class="notification-item">
+                                <div class="notification-title">Low Stock Alert</div>
+                                <div class="notification-time">Silk Saree (Red) is running low</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Sticky Bottom Navigation (Mobile) -->
+    <nav class="dashboard-bottom-nav">
+        <a href="#" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-shopping-bag"></i>
+            <span>Orders</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-plus-circle"></i>
+            <span>Add</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-chart-bar"></i>
+            <span>Stats</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- Shopping Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-overlay" id="cartOverlay"></div>
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Shopping Cart</h3>
+                <button class="cart-close" id="cartClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <p class="empty-cart">Your cart is empty</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span class="total-amount">₹0</span>
+                </div>
+                <button class="btn btn-primary btn-full">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Dashboard specific script to update date
+        document.addEventListener('DOMContentLoaded', () => {
+            const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const today = new Date();
+            const dateElement = document.getElementById('currentDate');
+            if (dateElement) {
+                dateElement.textContent = today.toLocaleDateString('en-US', dateOptions);
+            }
+        });
+    </script>
+</body>
+
+</html>

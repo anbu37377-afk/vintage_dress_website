@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - GramVastra Village Store</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .contact-hero {
+            padding: calc(80px + var(--spacing-xl)) 0 var(--spacing-xl);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: var(--tertiary-color);
+            text-align: center;
+        }
+
+        .contact-hero h1 {
+            color: var(--tertiary-color);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .contact-hero p {
+            color: var(--tertiary-color);
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-layout {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--tertiary-color);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+        }
+
+        .contact-form-section {
+            background-color: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: var(--spacing-sm);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-family: var(--font-secondary);
+            transition: border-color var(--transition-fast);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+        }
+
+        .contact-info-section {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+
+        .info-card {
+            background-color: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            transition: transform var(--transition-medium);
+        }
+
+        .info-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .info-card-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: var(--tertiary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .info-card h3 {
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .info-card p {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .info-card a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .info-card a:hover {
+            text-decoration: underline;
+        }
+
+        .map-section {
+            margin-top: var(--spacing-xl);
+        }
+
+        .map-container {
+            background-color: var(--surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            height: 400px;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&q=80&w=1200');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .map-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: var(--tertiary-color);
+        }
+
+        .map-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .map-content p {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .cta-section {
+            padding: var(--spacing-xl) 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: var(--tertiary-color);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: var(--tertiary-color);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .cta-section p {
+            color: var(--tertiary-color);
+            opacity: 0.9;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-white {
+            background-color: var(--tertiary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-white:hover {
+            background-color: var(--surface);
+            color: var(--primary-color);
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+        }
+
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .map-container {
+                height: 300px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-background"></div>
+        <div class="container">
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <div class="logo">
+                        <i class="fas fa-leaf"></i>
+                        <span>GramVastra</span>
+                    </div>
+                </div>
+                <div class="nav-menu" id="navMenu">
+                    <a href="../index.html" class="nav-link"><span>Home</span></a>
+                    <a href="../home2.html" class="nav-link"><span>Home 2</span></a>
+                    <a href="../shop.html" class="nav-link"><span>Shop</span></a>
+                    <a href="../categories.html" class="nav-link"><span>Categories</span></a>
+                    <a href="../about.html" class="nav-link"><span>About</span></a>
+                    <a href="blog.html" class="nav-link"><span>Blog</span></a>
+                    <a href="../dashboard.html" class="nav-link"><span>Dashboard</span></a>
+                    <a href="contact.html" class="nav-link active"><span>Contact</span></a>
+                    <a href="login.html" class="nav-link mobile-only"><span>Login</span></a>
+                    <a href="signup.html" class="nav-link mobile-only"><span>Sign Up</span></a>
+                </div>
+                <div class="nav-actions">
+                    <a href="../dashboard.html" class="dashboard-icon" aria-label="Dashboard">
+                    </a>
+                    <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                    <button class="cart-btn" id="cartBtn"><i class="fas fa-shopping-cart"></i><span
+                            class="cart-count">0</span></button>
+                    <a href="login.html" class="btn btn-outline">Login</a>
+                    <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle"><i class="fas fa-bars"></i></button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contact Hero Section -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1 class="fade-in">Connect With Our Village Artisans</h1>
+            <p class="fade-in">We'd love to hear from you! Whether you have questions about our crafts, want to place a
+                custom order, or simply want to learn more about our village communities.</p>
+        </div>
+    </section>
+
+    <!-- Contact Layout -->
+    <section class="contact-layout">
+        <div class="container">
+            <div class="contact-container">
+                <!-- Contact Form Section -->
+                <div class="contact-form-section fade-in">
+                    <h2>Send Us a Message</h2>
+                    <form id="contactForm" onsubmit="handleContactSubmit(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a subject</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="custom-order">Custom Order</option>
+                                <option value="wholesale">Wholesale Inquiry</option>
+                                <option value="artisan-story">Artisan Story</option>
+                                <option value="partnership">Partnership Opportunity</option>
+                                <option value="feedback">Feedback</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" placeholder="Tell us more about your inquiry..."
+                                required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                    </form>
+                </div>
+
+                <!-- Contact Info Section -->
+                <div class="contact-info-section">
+                    <div class="info-card scale-in">
+                        <div class="info-card-header">
+                            <div class="info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h3>Visit Our Village</h3>
+                        </div>
+                        <p><strong>GramVastra Village Center</strong></p>
+                        <p>123 Heritage Lane, Village Quarter<br>Banaras, Uttar Pradesh 221001<br>India</p>
+                        <p><a href="#" onclick="openMap()">Get Directions →</a></p>
+                    </div>
+
+                    <div class="info-card scale-in">
+                        <div class="info-card-header">
+                            <div class="info-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <h3>Call Us</h3>
+                        </div>
+                        <p><strong>Main Office:</strong> +91 98765 43210</p>
+                        <p><strong>WhatsApp:</strong> +91 98765 43211</p>
+                        <p><strong>Toll Free:</strong> 1800-GRAM-001</p>
+                        <p>Monday - Saturday: 9:00 AM - 6:00 PM</p>
+                    </div>
+
+                    <div class="info-card scale-in">
+                        <div class="info-card-header">
+                            <div class="info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h3>Email Us</h3>
+                        </div>
+                        <p><strong>General Inquiries:</strong><br><a
+                                href="mailto:hello@gramvastra.com">hello@gramvastra.com</a></p>
+                        <p><strong>Custom Orders:</strong><br><a
+                                href="mailto:custom@gramvastra.com">custom@gramvastra.com</a></p>
+                        <p><strong>Wholesale:</strong><br><a
+                                href="mailto:wholesale@gramvastra.com">wholesale@gramvastra.com</a></p>
+                    </div>
+
+                    <div class="info-card scale-in">
+                        <div class="info-card-header">
+                            <div class="info-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h3>Business Hours</h3>
+                        </div>
+                        <p><strong>Monday - Friday:</strong> 9:00 AM - 6:00 PM</p>
+                        <p><strong>Saturday:</strong> 10:00 AM - 4:00 PM</p>
+                        <p><strong>Sunday:</strong> Closed</p>
+                        <p><strong>Village Tours:</strong> Available by appointment</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map Section -->
+            <div class="map-container fade-in">
+                <div class="map-placeholder">
+                    <div class="map-overlay"></div>
+                    <div class="map-content">
+                        <h3>Visit Our Village Center</h3>
+                        <p>Experience authentic village craftsmanship firsthand</p>
+                        <button class="btn btn-white" onclick="openMap()">
+                            <i class="fas fa-map"></i> Open in Google Maps
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content fade-in">
+                <h2>Need Immediate Assistance?</h2>
+                <p>Connect with us instantly through WhatsApp or call our artisan support team</p>
+                <div class="cta-buttons">
+                    <a href="https://wa.me/919876543210" target="_blank" class="btn btn-whatsapp btn-large">
+                        <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                    </a>
+                    <a href="tel:+919876543210" class="btn btn-white btn-large">
+                        <i class="fas fa-phone"></i> Call Now
+                    </a>
+                    <a href="../shop.html" class="btn btn-outline btn-large">
+                        <i class="fas fa-shopping-bag"></i> Browse Collection
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <div class="logo">
+                            <i class="fas fa-leaf"></i>
+                            <span>GramVastra</span>
+                        </div>
+                        <p>Premium village clothing store celebrating authentic Indian craftsmanship</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>About the Village</h3>
+                    <ul>
+                        <li><a href="about.html">Our Story</a></li>
+                        <li><a href="about.html#artisans">Our Artisans</a></li>
+                        <li><a href="about.html#craftsmanship">Craftsmanship</a></li>
+                        <li><a href="blog.html">Village Stories</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Customer Support</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Policies</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                        <li><a href="#">Artisan Fair Trade</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 GramVastra. All rights reserved. Celebrating village craftsmanship.</p>
+                <button class="back-to-top" id="backToTop">
+                    <i class="fas fa-arrow-up"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-overlay" id="cartOverlay"></div>
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Shopping Cart</h3>
+                <button class="cart-close" id="cartClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <p class="empty-cart">Your cart is empty</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span class="total-amount">₹0</span>
+                </div>
+                <button class="btn btn-primary btn-full">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../script.js"></script>
+    <script>
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+
+            // Here you would normally send the data to your server
+            showNotification('Thank you for your message! We will get back to you within 24 hours.');
+            event.target.reset();
+        }
+
+        function openMap() {
+            // In a real implementation, this would open Google Maps
+            showNotification('Opening map location...');
+        }
+    </script>
+</body>
+
+</html>

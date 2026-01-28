@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - GramVastra Village Heritage</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* About Page Specific Styles */
+        .about-hero {
+            padding: calc(80px + var(--spacing-xxl)) 0 var(--spacing-xxl);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: var(--tertiary-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?auto=format&fit=crop&q=80&w=1200');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .about-hero .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .about-hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            margin-bottom: var(--spacing-md);
+            line-height: 1.1;
+        }
+
+        .about-hero-subtitle {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto var(--spacing-xl);
+            opacity: 0.9;
+        }
+
+        .heritage-story {
+            padding: var(--spacing-xxl) 0;
+            background-color: var(--tertiary-color);
+        }
+
+        .heritage-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            align-items: center;
+        }
+
+        .heritage-text h2 {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .heritage-timeline {
+            margin-top: var(--spacing-lg);
+            position: relative;
+            padding-left: var(--spacing-lg);
+        }
+
+        .heritage-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: var(--spacing-lg);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            border: 3px solid var(--tertiary-color);
+        }
+
+        .timeline-year {
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .mission-vision {
+            padding: var(--spacing-xxl) 0;
+            background-color: var(--surface);
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+        }
+
+        .mission-card {
+            background: linear-gradient(135deg, var(--tertiary-color) 0%, var(--surface) 100%);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-xl);
+            border: 2px solid var(--border);
+            text-align: center;
+        }
+
+        .mission-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto var(--spacing-md);
+            background-color: var(--primary-color);
+            color: var(--tertiary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .mission-card h3 {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .artisans-section {
+            padding: var(--spacing-xxl) 0;
+            background-color: var(--tertiary-color);
+        }
+
+        .artisans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .artisan-card {
+            background-color: var(--surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform var(--transition-medium);
+        }
+
+        .artisan-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .artisan-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .artisan-content {
+            padding: var(--spacing-md);
+        }
+
+        .artisan-name {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .artisan-role {
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .weaving-process {
+            padding: var(--spacing-xxl) 0;
+            background-color: var(--surface);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .process-number {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto var(--spacing-md);
+            background-color: var(--accent-color);
+            color: var(--tertiary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .process-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto var(--spacing-md);
+            background-color: var(--tertiary-color);
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .process-step h3 {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .sustainability-stats {
+            padding: var(--spacing-xxl) 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: var(--tertiary-color);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: var(--spacing-lg);
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--tertiary-color);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .stat-label {
+            font-size: 1.125rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+
+            .heritage-content,
+            .mission-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .heritage-timeline {
+                padding-left: var(--spacing-md);
+            }
+
+            .heritage-timeline::before {
+                left: 10px;
+            }
+
+            .timeline-item::before {
+                left: -25px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-background"></div>
+        <div class="container">
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <div class="logo">
+                        <i class="fas fa-leaf"></i>
+                        <span>GramVastra</span>
+                    </div>
+                </div>
+
+                <div class="nav-menu" id="navMenu">
+                    <a href="index.html" class="nav-link"><span>Home</span></a>
+                    <a href="home2.html" class="nav-link"><span>Home 2</span></a>
+                    <a href="shop.html" class="nav-link"><span>Shop</span></a>
+                    <a href="categories.html" class="nav-link"><span>Categories</span></a>
+                    <a href="about.html" class="nav-link active"><span>About</span></a>
+                    <a href="pages/blog.html" class="nav-link"><span>Blog</span></a>
+                    <a href="dashboard.html" class="nav-link"><span>Dashboard</span></a>
+                    <a href="pages/contact.html" class="nav-link"><span>Contact</span></a>
+                    <a href="pages/login.html" class="nav-link mobile-only"><span>Login</span></a>
+                    <a href="pages/signup.html" class="nav-link mobile-only"><span>Sign Up</span></a>
+                </div>
+
+                <div class="nav-actions">
+                    <a href="dashboard.html" class="dashboard-icon" aria-label="Dashboard">
+                    </a>
+                    <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                    <button class="cart-btn" id="cartBtn"><i class="fas fa-shopping-cart"></i><span
+                            class="cart-count">0</span></button>
+                    <a href="pages/login.html" class="btn btn-outline">Login</a>
+                    <a href="pages/signup.html" class="btn btn-primary">Sign Up</a>
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle"><i class="fas fa-bars"></i></button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- About Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <h1 class="about-hero-title fade-in">Our Village Heritage Story</h1>
+            <p class="about-hero-subtitle fade-in">From the heart of rural India to your wardrobe, we bring you
+                centuries of weaving tradition, artisan craftsmanship, and sustainable fashion</p>
+        </div>
+    </section>
+
+    <!-- Heritage Story Section -->
+    <section class="heritage-story">
+        <div class="container">
+            <div class="heritage-content">
+                <div class="heritage-text slide-in-left">
+                    <h2>A Legacy Woven Through Generations</h2>
+                    <p>GramVastra began as a dream to preserve and celebrate the rich textile heritage of Indian
+                        villages. Our journey started in the small weaving villages of Rajasthan, Gujarat, and Tamil
+                        Nadu, where we discovered master artisans who were the last keepers of ancient weaving
+                        techniques.</p>
+                    <p>What began as a small initiative to help these artisans find markets for their exquisite
+                        creations has grown into a movement that supports over 150 villages and empowers more than 500
+                        skilled craftspeople across India.</p>
+
+                    <div class="heritage-timeline">
+                        <div class="timeline-item fade-in">
+                            <div class="timeline-year">1920</div>
+                            <p>Our first weaving partnership began with a small family of master weavers in Rajasthan
+                            </p>
+                        </div>
+                        <div class="timeline-item fade-in">
+                            <div class="timeline-year">1965</div>
+                            <p>Expanded to include block printing artisans from Gujarat's traditional craft villages</p>
+                        </div>
+                        <div class="timeline-item fade-in">
+                            <div class="timeline-year">1985</div>
+                            <p>Introduced natural dyeing techniques, reviving ancient color traditions</p>
+                        </div>
+                        <div class="timeline-item fade-in">
+                            <div class="timeline-year">2010</div>
+                            <p>Launched GramVastra to bring authentic village crafts to the global market</p>
+                        </div>
+                        <div class="timeline-item fade-in">
+                            <div class="timeline-year">2026</div>
+                            <p>Today, we're proud to support 150+ villages and preserve 100+ years of textile traditions
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="heritage-image fade-in">
+                    <img src="https://images.unsplash.com/photo-1610492421943-4e6727782dc7?auto=format&fit=crop&q=80&w=800"
+                        alt="Heritage Weaving Artisan"
+                        style="width: 100%; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="mission-vision">
+        <div class="container">
+            <h2 class="section-title fade-in">Our Mission & Vision</h2>
+            <div class="mission-grid">
+                <div class="mission-card scale-in">
+                    <div class="mission-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Our Mission</h3>
+                    <p>To preserve and promote India's village textile heritage by creating sustainable livelihoods for
+                        rural artisans while bringing authentic, handcrafted clothing to conscious consumers worldwide.
+                    </p>
+                </div>
+
+                <div class="mission-card scale-in">
+                    <div class="mission-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Our Vision</h3>
+                    <p>To become the global platform that connects village artisans with the world, ensuring that
+                        traditional crafts not only survive but thrive in the modern fashion landscape.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artisans Section -->
+    <section class="artisans-section" id="artisans">
+        <div class="container">
+            <h2 class="section-title fade-in">Meet Our Master Artisans</h2>
+            <div class="artisans-grid">
+                <div class="artisan-card scale-in">
+                    <div class="artisan-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80');">
+                    </div>
+                    <div class="artisan-content">
+                        <h3 class="artisan-name">Ramesh Kumar</h3>
+                        <p class="artisan-role">Master Weaver - 45 years experience</p>
+                        <p>Specializes in traditional Banarasi silk weaving, creating intricate patterns that have been
+                            passed down through five generations of his family.</p>
+                    </div>
+                </div>
+
+                <div class="artisan-card scale-in">
+                    <div class="artisan-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1473445733995-882ed556f090?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                    </div>
+                    <div class="artisan-content">
+                        <h3 class="artisan-name">Sita Devi</h3>
+                        <p class="artisan-role">Block Print Artist - 30 years experience</p>
+                        <p>Master of traditional block printing techniques, using natural dyes and hand-carved wooden
+                            blocks to create stunning patterns.</p>
+                    </div>
+                </div>
+
+                <div class="artisan-card scale-in">
+                    <div class="artisan-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1528160216117-5984ba5f524d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                    </div>
+                    <div class="artisan-content">
+                        <h3 class="artisan-name">Mohammad Rafiq</h3>
+                        <p class="artisan-role">Embroidery Specialist - 25 years experience</p>
+                        <p>Expert in traditional Chikankari and Zardozi embroidery, adding intricate hand-embroidered
+                            details to festive collections.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Weaving Process Section -->
+    <section class="weaving-process" id="craftsmanship">
+        <div class="container">
+            <h2 class="section-title fade-in">The Art of Traditional Weaving</h2>
+            <div class="process-steps">
+                <div class="process-step scale-in">
+                    <div class="process-number">1</div>
+                    <div class="process-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>Sourcing Natural Fibers</h3>
+                    <p>We begin with carefully selected natural fibers - cotton, silk, and wool sourced directly from
+                        local farmers who practice sustainable agriculture.</p>
+                </div>
+
+                <div class="process-step scale-in">
+                    <div class="process-number">2</div>
+                    <div class="process-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Natural Dye Preparation</h3>
+                    <p>Our artisans create vibrant colors using traditional natural dyes from plants, minerals, and
+                        vegetables, following recipes passed down through generations.</p>
+                </div>
+
+                <div class="process-step scale-in">
+                    <div class="process-number">3</div>
+                    <div class="process-icon">
+                        <i class="fas fa-spinner"></i>
+                    </div>
+                    <h3>Spinning & Weaving</h3>
+                    <p>Using traditional handlooms and spinning wheels, our artisans transform raw fibers into exquisite
+                        fabrics with intricate patterns and textures.</p>
+                </div>
+
+                <div class="process-step scale-in">
+                    <div class="process-number">4</div>
+                    <div class="process-icon">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h3>Tailoring & Finishing</h3>
+                    <p>Each garment is carefully tailored and finished by hand, ensuring perfect fit and attention to
+                        detail in every stitch.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sustainability Stats Section -->
+    <section class="sustainability-stats">
+        <div class="container">
+            <h2 class="section-title fade-in">Our Impact</h2>
+            <div class="stats-grid">
+                <div class="stat-card scale-in">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Villages Supported</div>
+                </div>
+
+                <div class="stat-card scale-in">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Artisans Empowered</div>
+                </div>
+
+                <div class="stat-card scale-in">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Years of Tradition</div>
+                </div>
+
+                <div class="stat-card scale-in">
+                    <div class="stat-number">50K+</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+
+                <div class="stat-card scale-in">
+                    <div class="stat-number">0%</div>
+                    <div class="stat-label">Carbon Footprint</div>
+                </div>
+
+                <div class="stat-card scale-in">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Natural Materials</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <div class="logo">
+                            <i class="fas fa-leaf"></i>
+                            <span>GramVastra</span>
+                        </div>
+                        <p>Premium village clothing store celebrating authentic Indian craftsmanship</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>About the Village</h3>
+                    <ul>
+                        <li><a href="about.html">Our Story</a></li>
+                        <li><a href="about.html#artisans">Our Artisans</a></li>
+                        <li><a href="about.html#craftsmanship">Craftsmanship</a></li>
+                        <li><a href="blog.html">Village Stories</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Customer Support</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Policies</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                        <li><a href="#">Artisan Fair Trade</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 GramVastra. All rights reserved. Celebrating village craftsmanship.</p>
+                <button class="back-to-top" id="backToTop">
+                    <i class="fas fa-arrow-up"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-overlay" id="cartOverlay"></div>
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Shopping Cart</h3>
+                <button class="cart-close" id="cartClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <p class="empty-cart">Your cart is empty</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span class="total-amount">₹0</span>
+                </div>
+                <button class="btn btn-primary btn-full">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

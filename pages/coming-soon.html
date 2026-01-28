@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon - GramVastra Village Store</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { 
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: var(--spacing-lg);
+        }
+        .coming-soon-container { 
+            background-color: var(--surface); 
+            border-radius: var(--radius-xl); 
+            box-shadow: var(--shadow-xl); 
+            width: 100%; 
+            max-width: 600px; 
+            padding: var(--spacing-xl); 
+            text-align: center; 
+            animation: scaleIn 0.8s ease-out;
+        }
+        .coming-soon-logo { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: var(--spacing-xs); 
+            margin-bottom: var(--spacing-xl); 
+        }
+        .coming-soon-logo i { 
+            color: var(--accent-color); 
+            font-size: 3rem; 
+        }
+        .coming-soon-logo span { 
+            font-family: var(--font-primary); 
+            font-size: 2.5rem; 
+            font-weight: 900; 
+            color: var(--text-primary); 
+        }
+        .coming-soon-title { 
+            font-family: var(--font-primary); 
+            font-size: 2rem; 
+            color: var(--text-primary); 
+            margin-bottom: var(--spacing-md); 
+        }
+        .coming-soon-subtitle { 
+            color: var(--text-secondary); 
+            font-size: 1.125rem; 
+            margin-bottom: var(--spacing-xl); 
+            line-height: 1.6; 
+        }
+        .countdown { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: var(--spacing-md); 
+            margin-bottom: var(--spacing-xl); 
+        }
+        .countdown-item { 
+            background: linear-gradient(135deg, var(--tertiary-color) 0%, var(--surface) 100%); 
+            border-radius: var(--radius-lg); 
+            padding: var(--spacing-lg); 
+            border: 2px solid var(--border); 
+        }
+        .countdown-number { 
+            font-size: 2.5rem; 
+            font-weight: 700; 
+            color: var(--text-primary); 
+            margin-bottom: var(--spacing-xs); 
+            font-family: var(--font-primary); 
+        }
+        .countdown-label { 
+            color: var(--text-secondary); 
+            font-size: 0.875rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+        }
+        .coming-soon-image { 
+            margin: var(--spacing-xl) 0; 
+            border-radius: var(--radius-lg); 
+            overflow: hidden; 
+            box-shadow: var(--shadow-lg); 
+        }
+        .coming-soon-image img { 
+            width: 100%; 
+            height: auto; 
+            display: block; 
+        }
+        .notification-form { 
+            margin-bottom: var(--spacing-xl); 
+        }
+        .notification-form h3 { 
+            font-family: var(--font-primary); 
+            color: var(--text-primary); 
+            margin-bottom: var(--spacing-md); 
+        }
+        .form-group { 
+            display: flex; 
+            gap: var(--spacing-sm); 
+            margin-bottom: var(--spacing-md); 
+        }
+        .form-group input { 
+            flex: 1; 
+            padding: var(--spacing-md); 
+            border: 2px solid var(--border); 
+            border-radius: var(--radius-md); 
+            font-family: var(--font-secondary); 
+            transition: border-color var(--transition-fast); 
+        }
+        .form-group input:focus { 
+            outline: none; 
+            border-color: var(--primary-color); 
+        }
+        .social-links { 
+            display: flex; 
+            justify-content: center; 
+            gap: var(--spacing-md); 
+            margin-bottom: var(--spacing-xl); 
+        }
+        .social-link { 
+            width: 50px; 
+            height: 50px; 
+            background-color: var(--tertiary-color); 
+            color: var(--primary-color); 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 1.25rem; 
+            transition: all var(--transition-fast); 
+            text-decoration: none; 
+        }
+        .social-link:hover { 
+            background-color: var(--primary-color); 
+            color: var(--tertiary-color); 
+            transform: translateY(-2px); 
+        }
+        .back-home { 
+            margin-top: var(--spacing-xl); 
+            padding-top: var(--spacing-xl); 
+            border-top: 1px solid var(--border); 
+        }
+        @media (max-width: 768px) {
+            .countdown { 
+                grid-template-columns: repeat(2, 1fr); 
+            }
+            .coming-soon-logo span { 
+                font-size: 2rem; 
+            }
+            .coming-soon-title { 
+                font-size: 1.5rem; 
+            }
+            .form-group { 
+                flex-direction: column; 
+            }
+        }
+        @media (max-width: 480px) {
+            .coming-soon-container { 
+                padding: var(--spacing-lg); 
+                margin: var(--spacing-md); 
+            }
+            .countdown-number { 
+                font-size: 2rem; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="coming-soon-container">
+        <!-- Logo -->
+        <div class="coming-soon-logo">
+            <i class="fas fa-leaf"></i>
+            <span>GramVastra</span>
+        </div>
+        
+        <!-- Title -->
+        <h1 class="coming-soon-title fade-in">Something Amazing is Coming</h1>
+        <p class="coming-soon-subtitle fade-in">We're working hard to bring you an enhanced village shopping experience. Our artisans are crafting new collections and we're building exciting features to connect you with authentic village craftsmanship.</p>
+        
+        <!-- Countdown -->
+        <div class="countdown scale-in">
+            <div class="countdown-item">
+                <div class="countdown-number" id="days">00</div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="hours">00</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="minutes">00</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="seconds">00</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+        
+        <!-- Image -->
+        <div class="coming-soon-image fade-in">
+            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Village Artisans Working">
+        </div>
+        
+        <!-- Notification Form -->
+        <div class="notification-form slide-in-left">
+            <h3>Get Notified When We Launch</h3>
+            <form onsubmit="handleNotificationSubmit(event)">
+                <div class="form-group">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit" class="btn btn-primary">Notify Me</button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Social Links -->
+        <div class="social-links scale-in">
+            <a href="https://facebook.com" target="_blank" class="social-link">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" class="social-link">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" class="social-link">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://youtube.com" target="_blank" class="social-link">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+        
+        <!-- Back to Home -->
+        <div class="back-home fade-in">
+            <p>Can't wait? Explore our current collection</p>
+            <a href="../index.html" class="btn btn-outline btn-large">
+                <i class="fas fa-arrow-left"></i> Back to Store
+            </a>
+        </div>
+    </div>
+    
+    <script src="../script.js"></script>
+    <script>
+        // Set launch date (30 days from now for demo)
+        const launchDate = new Date();
+        launchDate.setDate(launchDate.getDate() + 30);
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = launchDate.getTime() - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.querySelector('.coming-soon-title').textContent = "We're Live!";
+                document.querySelector('.coming-soon-subtitle').textContent = "Our enhanced village shopping experience is now ready. Explore new collections and features!";
+                document.getElementById('days').textContent = "00";
+                document.getElementById('hours').textContent = "00";
+                document.getElementById('minutes').textContent = "00";
+                document.getElementById('seconds').textContent = "00";
+            }
+        }
+        
+        // Update countdown every second
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown(); // Initial call
+        
+        function handleNotificationSubmit(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            
+            // Store notification request (in real app, this would be sent to backend)
+            const notifications = JSON.parse(localStorage.getItem('launchNotifications') || '[]');
+            notifications.push({
+                email: email,
+                timestamp: new Date().toISOString()
+            });
+            localStorage.setItem('launchNotifications', JSON.stringify(notifications));
+            
+            showNotification(`Thank you! We'll notify you at ${email} when we launch.`);
+            event.target.reset();
+        }
+    </script>
+</body>
+</html>

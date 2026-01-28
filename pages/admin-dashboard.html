@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - GramVastra</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { 
+            background-color: var(--tertiary-color); 
+            font-family: var(--font-secondary);
+        }
+        .admin-layout { 
+            display: flex; 
+            min-height: 100vh; 
+        }
+        .admin-sidebar { 
+            width: 280px; 
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); 
+            color: var(--tertiary-color); 
+            padding: var(--spacing-lg); 
+            position: fixed; 
+            height: 100vh; 
+            overflow-y: auto; 
+            z-index: 1000;
+        }
+        .admin-logo { 
+            display: flex; 
+            align-items: center; 
+            gap: var(--spacing-xs); 
+            margin-bottom: var(--spacing-xl); 
+            padding-bottom: var(--spacing-lg); 
+            border-bottom: 1px solid rgba(255,255,255,0.2); 
+        }
+        .admin-logo i { 
+            font-size: 1.5rem; 
+        }
+        .admin-logo span { 
+            font-family: var(--font-primary); 
+            font-size: 1.25rem; 
+            font-weight: 900; 
+        }
+        .admin-nav { 
+            list-style: none; 
+        }
+        .admin-nav li { 
+            margin-bottom: var(--spacing-xs); 
+        }
+        .admin-nav a { 
+            display: flex; 
+            align-items: center; 
+            gap: var(--spacing-sm); 
+            padding: var(--spacing-sm) var(--spacing-md); 
+            color: var(--tertiary-color); 
+            text-decoration: none; 
+            border-radius: var(--radius-md); 
+            transition: all var(--transition-fast); 
+        }
+        .admin-nav a:hover, 
+        .admin-nav a.active { 
+            background-color: rgba(255,255,255,0.2); 
+        }
+        .admin-nav i { 
+            width: 20px; 
+            text-align: center; 
+        }
+        .admin-main { 
+            flex: 1; 
+            margin-left: 280px; 
+            padding: var(--spacing-lg); 
+        }
+        .admin-header { 
+            background-color: var(--surface); 
+            border-radius: var(--radius-lg); 
+            padding: var(--spacing-lg); 
+            margin-bottom: var(--spacing-lg); 
+            box-shadow: var(--shadow-md); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        .admin-title { 
+            font-family: var(--font-primary); 
+            font-size: 1.5rem; 
+            color: var(--text-primary); 
+        }
+        .admin-user { 
+            display: flex; 
+            align-items: center; 
+            gap: var(--spacing-sm); 
+        }
+        .admin-user-avatar { 
+            width: 40px; 
+            height: 40px; 
+            border-radius: 50%; 
+            background-color: var(--primary-color); 
+            color: var(--tertiary-color); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 600; 
+        }
+        .admin-stats { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: var(--spacing-lg); 
+            margin-bottom: var(--spacing-lg); 
+        }
+        .stat-card { 
+            background-color: var(--surface); 
+            border-radius: var(--radius-lg); 
+            padding: var(--spacing-lg); 
+            box-shadow: var(--shadow-md); 
+            transition: transform var(--transition-medium); 
+        }
+        .stat-card:hover { 
+            transform: translateY(-4px); 
+            box-shadow: var(--shadow-lg); 
+        }
+        .stat-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: var(--spacing-md); 
+        }
+        .stat-icon { 
+            width: 50px; 
+            height: 50px; 
+            background-color: var(--tertiary-color); 
+            color: var(--primary-color); 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 1.25rem; 
+        }
+        .stat-value { 
+            font-size: 2rem; 
+            font-weight: 700; 
+            color: var(--text-primary); 
+            margin-bottom: var(--spacing-xs); 
+        }
+        .stat-label { 
+            color: var(--text-secondary); 
+            font-size: 0.875rem; 
+        }
+        .stat-change { 
+            font-size: 0.875rem; 
+            font-weight: 500; 
+        }
+        .stat-change.positive { 
+            color: var(--success); 
+        }
+        .stat-change.negative { 
+            color: var(--error); 
+        }
+        .admin-content { 
+            background-color: var(--surface); 
+            border-radius: var(--radius-lg); 
+            padding: var(--spacing-lg); 
+            box-shadow: var(--shadow-md); 
+        }
+        .content-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: var(--spacing-lg); 
+            padding-bottom: var(--spacing-md); 
+            border-bottom: 1px solid var(--border); 
+        }
+        .content-title { 
+            font-family: var(--font-primary); 
+            font-size: 1.25rem; 
+            color: var(--text-primary); 
+        }
+        .content-actions { 
+            display: flex; 
+            gap: var(--spacing-sm); 
+        }
+        .chart-placeholder { 
+            background: linear-gradient(135deg, var(--tertiary-color) 0%, var(--surface) 100%); 
+            border: 2px dashed var(--border); 
+            border-radius: var(--radius-lg); 
+            height: 300px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: var(--text-secondary); 
+            margin-bottom: var(--spacing-lg); 
+        }
+        .data-table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: var(--spacing-lg); 
+        }
+        .data-table th, 
+        .data-table td { 
+            padding: var(--spacing-sm); 
+            text-align: left; 
+            border-bottom: 1px solid var(--border); 
+        }
+        .data-table th { 
+            background-color: var(--tertiary-color); 
+            color: var(--text-primary); 
+            font-weight: 600; 
+        }
+        .status-badge { 
+            padding: 4px 8px; 
+            border-radius: var(--radius-sm); 
+            font-size: 0.75rem; 
+            font-weight: 600; 
+            text-transform: uppercase; 
+        }
+        .status-badge.active { 
+            background-color: var(--success); 
+            color: white; 
+        }
+        .status-badge.pending { 
+            background-color: var(--warning); 
+            color: white; 
+        }
+        .status-badge.inactive { 
+            background-color: var(--text-light); 
+            color: white; 
+        }
+        .mobile-menu-toggle { 
+            display: none; 
+            position: fixed; 
+            top: var(--spacing-md); 
+            left: var(--spacing-md); 
+            z-index: 1001; 
+            background-color: var(--primary-color); 
+            color: var(--tertiary-color); 
+            border: none; 
+            padding: var(--spacing-sm); 
+            border-radius: var(--radius-sm); 
+            cursor: pointer; 
+        }
+        @media (max-width: 768px) {
+            .admin-sidebar { 
+                transform: translateX(-100%); 
+                transition: transform var(--transition-medium); 
+            }
+            .admin-sidebar.active { 
+                transform: translateX(0); 
+            }
+            .admin-main { 
+                margin-left: 0; 
+            }
+            .mobile-menu-toggle { 
+                display: block; 
+            }
+            .admin-stats { 
+                grid-template-columns: 1fr; 
+            }
+            .content-header { 
+                flex-direction: column; 
+                gap: var(--spacing-md); 
+                align-items: stretch; 
+            }
+            .data-table { 
+                font-size: 0.875rem; 
+            }
+            .data-table th, 
+            .data-table td { 
+                padding: var(--spacing-xs); 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Admin Sidebar -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="admin-logo">
+                <i class="fas fa-leaf"></i>
+                <span>GramVastra</span>
+                <small style="margin-left: auto;">Admin</small>
+            </div>
+            
+            <nav>
+                <ul class="admin-nav">
+                    <li><a href="#analytics" class="nav-link active" onclick="showSection('analytics')">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Analytics</span>
+                    </a></li>
+                    <li><a href="#products" class="nav-link" onclick="showSection('products')">
+                        <i class="fas fa-box"></i>
+                        <span>Products</span>
+                    </a></li>
+                    <li><a href="#orders" class="nav-link" onclick="showSection('orders')">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Orders</span>
+                    </a></li>
+                    <li><a href="#customers" class="nav-link" onclick="showSection('customers')">
+                        <i class="fas fa-users"></i>
+                        <span>Customers</span>
+                    </a></li>
+                    <li><a href="#messages" class="nav-link" onclick="showSection('messages')">
+                        <i class="fas fa-envelope"></i>
+                        <span>Messages</span>
+                    </a></li>
+                    <li><a href="#artisans" class="nav-link" onclick="showSection('artisans')">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        <span>Artisans</span>
+                    </a></li>
+                    <li><a href="#settings" class="nav-link" onclick="showSection('settings')">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a></li>
+                    <li><a href="../index.html" style="margin-top: var(--spacing-lg); border-top: 1px solid rgba(255,255,255,0.2); padding-top: var(--spacing-md);">
+                        <i class="fas fa-home"></i>
+                        <span>Back to Store</span>
+                    </a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <!-- Admin Main Content -->
+        <main class="admin-main">
+            <!-- Admin Header -->
+            <header class="admin-header">
+                <h1 class="admin-title">Dashboard Overview</h1>
+                <div class="admin-user">
+                    <span>Admin User</span>
+                    <div class="admin-user-avatar">A</div>
+                </div>
+            </header>
+            
+            <!-- Stats Cards -->
+            <div class="admin-stats">
+                <div class="stat-card scale-in">
+                    <div class="stat-header">
+                        <div class="stat-icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <span class="stat-change positive">+12.5%</span>
+                    </div>
+                    <div class="stat-value">₹2,45,678</div>
+                    <div class="stat-label">Total Revenue (This Month)</div>
+                </div>
+                
+                <div class="stat-card scale-in">
+                    <div class="stat-header">
+                        <div class="stat-icon">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <span class="stat-change positive">+8.3%</span>
+                    </div>
+                    <div class="stat-value">342</div>
+                    <div class="stat-label">Total Orders</div>
+                </div>
+                
+                <div class="stat-card scale-in">
+                    <div class="stat-header">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <span class="stat-change positive">+15.2%</span>
+                    </div>
+                    <div class="stat-value">1,234</div>
+                    <div class="stat-label">Active Customers</div>
+                </div>
+                
+                <div class="stat-card scale-in">
+                    <div class="stat-header">
+                        <div class="stat-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <span class="stat-change negative">-2.1%</span>
+                    </div>
+                    <div class="stat-value">89</div>
+                    <div class="stat-label">Products in Stock</div>
+                </div>
+            </div>
+            
+            <!-- Analytics Section -->
+            <section id="analytics-section" class="admin-content fade-in">
+                <div class="content-header">
+                    <h2 class="content-title">Sales Analytics</h2>
+                    <div class="content-actions">
+                        <button class="btn btn-outline">Export Report</button>
+                        <button class="btn btn-primary">View Details</button>
+                    </div>
+                </div>
+                
+                <div class="chart-placeholder">
+                    <div style="text-align: center;">
+                        <i class="fas fa-chart-line" style="font-size: 3rem; margin-bottom: var(--spacing-md); color: var(--primary-color);"></i>
+                        <p>Sales Chart Placeholder</p>
+                        <small>Integration with analytics service required</small>
+                    </div>
+                </div>
+                
+                <h3 style="margin-bottom: var(--spacing-md); color: var(--primary-color);">Recent Sales</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Product</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#GV2026001</td>
+                            <td>Priya Sharma</td>
+                            <td>Banarasi Silk Saree</td>
+                            <td>₹3,500</td>
+                            <td><span class="status-badge active">Completed</span></td>
+                            <td>Mar 15, 2026</td>
+                        </tr>
+                        <tr>
+                            <td>#GV2026002</td>
+                            <td>Rahul Kumar</td>
+                            <td>Cotton Dhoti Set</td>
+                            <td>₹1,200</td>
+                            <td><span class="status-badge pending">Processing</span></td>
+                            <td>Mar 15, 2026</td>
+                        </tr>
+                        <tr>
+                            <td>#GV2026003</td>
+                            <td>Anita Desai</td>
+                            <td>Handloom Kurta</td>
+                            <td>₹2,800</td>
+                            <td><span class="status-badge active">Completed</span></td>
+                            <td>Mar 14, 2026</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <!-- Products Section (Hidden by default) -->
+            <section id="products-section" class="admin-content" style="display: none;">
+                <div class="content-header">
+                    <h2 class="content-title">Product Management</h2>
+                    <div class="content-actions">
+                        <button class="btn btn-primary">Add New Product</button>
+                    </div>
+                </div>
+                
+                <div class="chart-placeholder">
+                    <div style="text-align: center;">
+                        <i class="fas fa-box" style="font-size: 3rem; margin-bottom: var(--spacing-md); color: var(--primary-color);"></i>
+                        <p>Product Management Interface</p>
+                        <small>CRUD operations for products</small>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Orders Section (Hidden by default) -->
+            <section id="orders-section" class="admin-content" style="display: none;">
+                <div class="content-header">
+                    <h2 class="content-title">Order Management</h2>
+                    <div class="content-actions">
+                        <button class="btn btn-outline">Export Orders</button>
+                    </div>
+                </div>
+                
+                <div class="chart-placeholder">
+                    <div style="text-align: center;">
+                        <i class="fas fa-shopping-cart" style="font-size: 3rem; margin-bottom: var(--spacing-md); color: var(--primary-color);"></i>
+                        <p>Order Management System</p>
+                        <small>Track and manage customer orders</small>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Other sections would follow the same pattern -->
+        </main>
+    </div>
+    
+    <script src="../script.js"></script>
+    <script>
+        function showSection(section) {
+            // Hide all sections
+            document.querySelectorAll('.admin-content').forEach(sec => {
+                sec.style.display = 'none';
+            });
+            
+            // Remove active class from all nav links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Show selected section
+            const selectedSection = document.getElementById(section + '-section');
+            if (selectedSection) {
+                selectedSection.style.display = 'block';
+                selectedSection.classList.add('fade-in');
+            }
+            
+            // Add active class to clicked nav link
+            event.target.closest('.nav-link').classList.add('active');
+            
+            // Close sidebar on mobile
+            if (window.innerWidth <= 768) {
+                document.getElementById('adminSidebar').classList.remove('active');
+            }
+        }
+        
+        function toggleSidebar() {
+            document.getElementById('adminSidebar').classList.toggle('active');
+        }
+        
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                const sidebar = document.getElementById('adminSidebar');
+                const toggle = document.querySelector('.mobile-menu-toggle');
+                
+                if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
+                    sidebar.classList.remove('active');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

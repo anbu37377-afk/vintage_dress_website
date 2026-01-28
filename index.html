@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GramVastra - Authentic Village Clothing Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-background"></div>
+        <div class="container">
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <div class="logo">
+                        <i class="fas fa-leaf"></i>
+                        <span>GramVastra</span>
+                    </div>
+                </div>
+
+                <div class="nav-menu" id="navMenu">
+                    <a href="index.html" class="nav-link active">
+                        <span>Home</span>
+                    </a>
+                    <a href="home2.html" class="nav-link">
+                        <span>Home 2</span>
+                    </a>
+                    <a href="shop.html" class="nav-link">
+                        <span>Shop</span>
+                    </a>
+                    <a href="categories.html" class="nav-link">
+                        <span>Categories</span>
+                    </a>
+                    <a href="about.html" class="nav-link">
+                        <span>About</span>
+                    </a>
+                    <a href="pages/blog.html" class="nav-link">
+                        <span>Blog</span>
+                    </a>
+                    <a href="dashboard.html" class="nav-link">
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="pages/contact.html" class="nav-link">
+                        <span>Contact</span>
+                    </a>
+
+                    <!-- Mobile Menu Items -->
+                    <a href="pages/login.html" class="nav-link mobile-only">
+                        <span>Login</span>
+                    </a>
+                    <a href="pages/signup.html" class="nav-link mobile-only">
+                        <span>Sign Up</span>
+                    </a>
+                </div>
+
+                <div class="nav-actions">
+                    <a href="dashboard.html" class="dashboard-icon" aria-label="Dashboard">
+
+                    </a>
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="cart-btn" id="cartBtn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </button>
+                    <a href="pages/login.html" class="btn btn-outline">Login</a>
+                    <a href="pages/signup.html" class="btn btn-primary">Sign Up</a>
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title fade-in">Discover the Soul of Village Craftsmanship</h1>
+                <p class="hero-subtitle fade-in">Handwoven traditions, authentic fabrics, and stories woven by
+                    generations of rural artisans</p>
+                <div class="hero-actions fade-in">
+                    <a href="shop.html" class="btn btn-primary btn-large">Shop Collection</a>
+                    <a href="about.html" class="btn btn-outline btn-large">Our Story</a>
+                </div>
+            </div>
+            <div class="hero-image fade-in">
+                <img src="https://media.istockphoto.com/id/93355119/photo/indian-saris.jpg?s=612x612&w=0&k=20&c=afmfiTJg0VAmIY6P_TJ_JYsTfGhUdevv18WXQRUZ8NQ="
+                    alt="Authentic Indian Handwoven Sarees">
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title fade-in">Shop by Category</h2>
+            <div class="category-grid">
+                <div class="category-card scale-in">
+                    <div class="category-image">
+                        <img src="https://media.istockphoto.com/id/93355119/photo/indian-saris.jpg?s=612x612&w=0&k=20&c=afmfiTJg0VAmIY6P_TJ_JYsTfGhUdevv18WXQRUZ8NQ="
+                            alt="Women's Sarees Collection">
+                    </div>
+                    <div class="category-content">
+                        <h3>Women's Sarees</h3>
+                        <p>Handwoven silk & cotton sarees</p>
+                        <a href="categories.html#women" class="btn btn-outline">Shop Now</a>
+                    </div>
+                </div>
+
+                <div class="category-card scale-in">
+                    <div class="category-image">
+                        <img src="images/mens_dhoti_kurta.png" alt="Men's Dhotis">
+                    </div>
+                    <div class="category-content">
+                        <h3>Men's Dhotis</h3>
+                        <p>Traditional cotton dhotis & kurtas</p>
+                        <a href="categories.html#men" class="btn btn-outline">Shop Now</a>
+                    </div>
+                </div>
+
+                <div class="category-card scale-in">
+                    <div class="category-image">
+                        <img src="images/kids_ethnic_wear.png" alt="Kids Wear">
+                    </div>
+                    <div class="category-content">
+                        <h3>Kids Wear</h3>
+                        <p>Comfortable ethnic wear for children</p>
+                        <a href="categories.html#kids" class="btn btn-outline">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artisan Story Section -->
+    <section class="artisan-story">
+        <div class="container">
+            <div class="artisan-content">
+                <div class="artisan-text slide-in-left">
+                    <h2>The Artisan's Touch</h2>
+                    <p>Every thread tells a story of tradition, passed down through generations. Our village artisans
+                        weave not just fabric, but dreams and heritage into each creation.</p>
+                    <p>From the looms of rural India to your wardrobe, we bring you authentic handcrafted clothing that
+                        celebrates the rich tapestry of Indian village culture.</p>
+                    <div class="artisan-stats">
+                        <div class="stat">
+                            <h3>150+</h3>
+                            <p>Villages Supported</p>
+                        </div>
+                        <div class="stat">
+                            <h3>500+</h3>
+                            <p>Artisans Empowered</p>
+                        </div>
+                        <div class="stat">
+                            <h3>100+</h3>
+                            <p>Years of Tradition</p>
+                        </div>
+                    </div>
+                    <a href="about.html" class="btn btn-primary">Learn More</a>
+                </div>
+                <div class="artisan-image fade-in">
+                    <img src="https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?auto=format&fit=crop&q=80&w=800"
+                        alt="Village Artisan Working">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Section -->
+    <section class="why-choose">
+        <div class="container">
+            <h2 class="section-title fade-in">Why Choose GramVastra</h2>
+            <div class="features-grid">
+                <div class="feature-card scale-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3>Handcrafted Quality</h3>
+                    <p>Each piece is meticulously crafted by skilled artisans using traditional techniques</p>
+                </div>
+
+                <div class="feature-card scale-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Sustainable Fashion</h3>
+                    <p>Eco-friendly materials and processes that support both people and planet</p>
+                </div>
+
+                <div class="feature-card scale-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Support Artisans</h3>
+                    <p>Directly support rural communities and preserve traditional craftsmanship</p>
+                </div>
+
+                <div class="feature-card scale-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Authentic Guarantee</h3>
+                    <p>100% authentic village-made clothing with quality certification</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Collections -->
+    <section class="featured-collections">
+        <div class="container">
+            <h2 class="section-title fade-in">Featured Collections</h2>
+            <div class="collections-grid">
+                <div class="collection-card scale-in">
+                    <div class="collection-image">
+                        <img src="https://thumbs.dreamstime.com/b/woman-vintage-dress-fashion-show-pretty-female-model-red-hat-retro-style-prague-84747333.jpg"
+                            alt="Festive Collection">
+                        <div class="collection-overlay">
+                            <span class="collection-badge">New</span>
+                        </div>
+                    </div>
+                    <div class="collection-content">
+                        <h3>Festive Collection</h3>
+                        <p>Celebrate traditions with our festive wear</p>
+                        <a href="shop.html?collection=festive" class="btn btn-outline">View Collection</a>
+                    </div>
+                </div>
+
+                <div class="collection-card scale-in">
+                    <div class="collection-image">
+                        <img src="https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                            alt="Daily Wear">
+                    </div>
+                    <div class="collection-content">
+                        <h3>Daily Wear</h3>
+                        <p>Comfortable everyday ethnic wear</p>
+                        <a href="shop.html?collection=daily" class="btn btn-outline">View Collection</a>
+                    </div>
+                </div>
+
+                <div class="collection-card scale-in">
+                    <div class="collection-image">
+                        <img src="https://images.unsplash.com/photo-1617019114583-affb34d1b3cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                            alt="Wedding Collection">
+                        <div class="collection-overlay">
+                            <span class="collection-badge">Premium</span>
+                        </div>
+                    </div>
+                    <div class="collection-content">
+                        <h3>Wedding Collection</h3>
+                        <p>Luxurious traditional wedding attire</p>
+                        <a href="shop.html?collection=wedding" class="btn btn-outline">View Collection</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content fade-in">
+                <h2>Join Our Village Community</h2>
+                <p>Subscribe to get exclusive offers, artisan stories, and early access to new collections</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <div class="logo">
+                            <i class="fas fa-leaf"></i>
+                            <span>GramVastra</span>
+                        </div>
+                        <p>Premium village clothing store celebrating authentic Indian craftsmanship</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>About the Village</h3>
+                    <ul>
+                        <li><a href="about.html">Our Story</a></li>
+                        <li><a href="about.html#artisans">Our Artisans</a></li>
+                        <li><a href="about.html#craftsmanship">Craftsmanship</a></li>
+                        <li><a href="blog.html">Village Stories</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Customer Support</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Policies</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                        <li><a href="#">Artisan Fair Trade</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 GramVastra. All rights reserved. Celebrating village craftsmanship.</p>
+                <button class="back-to-top" id="backToTop">
+                    <i class="fas fa-arrow-up"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-overlay" id="cartOverlay"></div>
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Shopping Cart</h3>
+                <button class="cart-close" id="cartClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <p class="empty-cart">Your cart is empty</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span class="total-amount">₹0</span>
+                </div>
+                <button class="btn btn-primary btn-full">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

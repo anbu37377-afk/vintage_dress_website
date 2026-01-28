@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - GramVastra Village Clothing Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .shop-hero {
+            padding: calc(80px + var(--spacing-xl)) 0 var(--spacing-xl);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: var(--tertiary-color);
+            text-align: center;
+        }
+
+        .shop-hero h1 {
+            color: var(--tertiary-color);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .shop-hero p {
+            color: var(--tertiary-color);
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .shop-layout {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--tertiary-color);
+        }
+
+        .shop-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: var(--spacing-xl);
+        }
+
+        .filters-sidebar {
+            background-color: var(--surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .filter-section {
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .filter-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .filter-title {
+            font-family: var(--font-primary);
+            font-size: 1.125rem;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .filter-title i {
+            font-size: 0.875rem;
+            transition: transform var(--transition-fast);
+        }
+
+        .filter-title.collapsed i {
+            transform: rotate(-90deg);
+        }
+
+        .filter-content {
+            display: block;
+        }
+
+        .filter-content.collapsed {
+            display: none;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .filter-option input {
+            margin-right: var(--spacing-sm);
+            accent-color: var(--primary-color);
+        }
+
+        .filter-option label {
+            cursor: pointer;
+            color: var(--text-secondary);
+            flex: 1;
+        }
+
+        .price-inputs {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .price-inputs input {
+            padding: var(--spacing-xs);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-secondary);
+            width: 100%;
+        }
+
+        .main-content {
+            min-height: 100vh;
+        }
+
+        .shop-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+        }
+
+        .results-count {
+            color: var(--text-secondary);
+        }
+
+        .sort-dropdown {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .sort-dropdown select {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            background-color: var(--surface);
+            font-family: var(--font-secondary);
+            cursor: pointer;
+        }
+
+        .view-options {
+            display: flex;
+            gap: var(--spacing-xs);
+        }
+
+        .view-btn {
+            padding: var(--spacing-xs);
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .view-btn.active {
+            background-color: var(--primary-color);
+            color: var(--tertiary-color);
+            border-color: var(--primary-color);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .product-card {
+            background-color: var(--surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-medium);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .product-image {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            transition: transform var(--transition-medium);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-badges {
+            position: absolute;
+            top: var(--spacing-sm);
+            left: var(--spacing-sm);
+            display: flex;
+            gap: var(--spacing-xs);
+        }
+
+        .product-badge {
+            background-color: var(--accent-color);
+            color: var(--tertiary-color);
+            padding: 4px 8px;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .product-badge.new {
+            background-color: var(--success);
+        }
+
+        .product-badge.sale {
+            background-color: var(--error);
+        }
+
+        .product-actions {
+            position: absolute;
+            top: var(--spacing-sm);
+            right: var(--spacing-sm);
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xs);
+            opacity: 0;
+            transition: opacity var(--transition-medium);
+        }
+
+        .product-card:hover .product-actions {
+            opacity: 1;
+        }
+
+        .action-btn {
+            width: 36px;
+            height: 36px;
+            background-color: var(--surface);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .action-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--tertiary-color);
+        }
+
+        .product-content {
+            padding: var(--spacing-md);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-category {
+            color: var(--text-light);
+            font-size: 0.875rem;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .product-name {
+            font-family: var(--font-primary);
+            font-size: 1.125rem;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+            flex: 1;
+        }
+
+        .product-description {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: var(--spacing-md);
+            line-height: 1.4;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .current-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .original-price {
+            font-size: 1rem;
+            color: var(--text-light);
+            text-decoration: line-through;
+        }
+
+        .add-to-cart {
+            background-color: var(--primary-color);
+            color: var(--tertiary-color);
+            border: none;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            font-weight: 500;
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--accent-color);
+        }
+
+        .cta-banner {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: var(--tertiary-color);
+            text-align: center;
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .cta-banner h2 {
+            color: var(--tertiary-color);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .cta-banner p {
+            color: var(--tertiary-color);
+            opacity: 0.9;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-xl);
+        }
+
+        .pagination button {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .pagination button:hover:not(:disabled) {
+            background-color: var(--primary-color);
+            color: var(--tertiary-color);
+            border-color: var(--primary-color);
+        }
+
+        .pagination button.active {
+            background-color: var(--primary-color);
+            color: var(--tertiary-color);
+            border-color: var(--primary-color);
+        }
+
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            .shop-container {
+                grid-template-columns: 1fr;
+            }
+
+            .filters-sidebar {
+                position: static;
+                margin-bottom: var(--spacing-lg);
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: var(--spacing-md);
+            }
+
+            .shop-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .sort-dropdown {
+                justify-content: space-between;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-image {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-background"></div>
+        <div class="container">
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <div class="logo">
+                        <i class="fas fa-leaf"></i>
+                        <span>GramVastra</span>
+                    </div>
+                </div>
+                <div class="nav-menu" id="navMenu">
+                    <a href="index.html" class="nav-link">
+                        <span>Home</span>
+                    </a>
+                    <a href="home2.html" class="nav-link">
+                        <span>Home 2</span>
+                    </a>
+                    <a href="shop.html" class="nav-link active">
+                        <span>Shop</span>
+                    </a>
+                    <a href="categories.html" class="nav-link">
+                        <span>Categories</span>
+                    </a>
+                    <a href="about.html" class="nav-link">
+                        <span>About</span>
+                    </a>
+                    <a href="pages/blog.html" class="nav-link">
+                        <span>Blog</span>
+                    </a>
+                    <a href="dashboard.html" class="nav-link">
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="pages/contact.html" class="nav-link">
+                        <span>Contact</span>
+                    </a>
+
+                    <!-- Mobile Menu Items -->
+                    <a href="pages/login.html" class="nav-link mobile-only">
+                        <span>Login</span>
+                    </a>
+                    <a href="pages/signup.html" class="nav-link mobile-only">
+                        <span>Sign Up</span>
+                    </a>
+                </div>
+
+                <div class="nav-actions">
+                    <a href="dashboard.html" class="dashboard-icon" aria-label="Dashboard">
+
+                    </a>
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="cart-btn" id="cartBtn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </button>
+                    <a href="pages/login.html" class="btn btn-outline">Login</a>
+                    <a href="pages/signup.html" class="btn btn-primary">Sign Up</a>
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Shop Hero Section -->
+    <section class="shop-hero">
+        <div class="container">
+            <h1 class="fade-in">Shop Village Collections</h1>
+            <p class="fade-in">Discover authentic handcrafted clothing from skilled village artisans across India</p>
+        </div>
+    </section>
+
+    <!-- Shop Layout -->
+    <section class="shop-layout">
+        <div class="container">
+            <div class="shop-container">
+                <!-- Filters Sidebar -->
+                <aside class="filters-sidebar">
+                    <div class="filter-section">
+                        <h3 class="filter-title" onclick="toggleFilter(this)">
+                            Categories
+                            <i class="fas fa-chevron-down"></i>
+                        </h3>
+                        <div class="filter-content">
+                            <div class="filter-option">
+                                <input type="checkbox" id="cat-sarees" name="category" value="sarees">
+                                <label for="cat-sarees">Sarees (45)</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="cat-dhotis" name="category" value="dhotis">
+                                <label for="cat-dhotis">Dhotis (28)</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="cat-kurtas" name="category" value="kurtas">
+                                <label for="cat-kurtas">Kurtas (36)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h3 class="filter-title" onclick="toggleFilter(this)">
+                            Fabric Type
+                            <i class="fas fa-chevron-down"></i>
+                        </h3>
+                        <div class="filter-content">
+                            <div class="filter-option">
+                                <input type="checkbox" id="fabric-cotton" name="fabric" value="cotton">
+                                <label for="fabric-cotton">Cotton (52)</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="fabric-silk" name="fabric" value="silk">
+                                <label for="fabric-silk">Silk (38)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h3 class="filter-title" onclick="toggleFilter(this)">
+                            Price Range
+                            <i class="fas fa-chevron-down"></i>
+                        </h3>
+                        <div class="filter-content">
+                            <div class="price-inputs">
+                                <input type="number" id="min-price" placeholder="Min" value="0">
+                                <input type="number" id="max-price" placeholder="Max" value="5000">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-full" onclick="applyFilters()">Apply Filters</button>
+                </aside>
+
+                <!-- Main Content -->
+                <main class="main-content">
+                    <div class="shop-header">
+                        <div class="results-count">Showing <span id="result-count">6</span> products</div>
+                        <div class="sort-dropdown">
+                            <label for="sort-select">Sort by:</label>
+                            <select id="sort-select" onchange="sortProducts()">
+                                <option value="featured">Featured</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Product Grid -->
+                    <div class="product-grid" id="productGrid">
+                        <div class="product-card scale-in">
+                            <div class="product-image">
+                                <img src="https://media.istockphoto.com/id/93355119/photo/indian-saris.jpg?s=612x612&w=0&k=20&c=afmfiTJg0VAmIY6P_TJ_JYsTfGhUdevv18WXQRUZ8NQ="
+                                    alt="Handwoven Banarasi Silk Saree">
+                                <div class="product-badges">
+                                    <span class="product-badge new">New</span>
+                                </div>
+                                <div class="product-actions">
+                                    <button class="action-btn" title="Quick View">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <div class="product-category">Sarees</div>
+                                <h3 class="product-name">Handwoven Banarasi Silk Saree</h3>
+                                <p class="product-description">Exquisite traditional Banarasi silk with intricate gold
+                                    zari work</p>
+                                <div class="product-footer">
+                                    <div class="product-price">
+                                        <span class="current-price">₹3,500</span>
+                                    </div>
+                                    <button class="add-to-cart"
+                                        onclick="addToCart({id: 1, name: 'Handwoven Banarasi Silk Saree', price: 3500, image: 'https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80'})">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product-card scale-in">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                                    alt="Cotton Dhoti">
+                                <div class="product-actions">
+                                    <button class="action-btn" title="Quick View">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <div class="product-category">Dhotis</div>
+                                <h3 class="product-name">Traditional Cotton Dhoti</h3>
+                                <p class="product-description">Comfortable pure cotton dhoti perfect for daily wear and
+                                    ceremonies</p>
+                                <div class="product-footer">
+                                    <div class="product-price">
+                                        <span class="current-price">₹800</span>
+                                    </div>
+                                    <button class="add-to-cart"
+                                        onclick="addToCart({id: 2, name: 'Traditional Cotton Dhoti', price: 800, image: 'https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80'})">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Banner -->
+                    <div class="cta-banner fade-in">
+                        <h2>Can't Find What You're Looking For?</h2>
+                        <p>Contact our village artisans for custom-made traditional clothing tailored to your
+                            preferences</p>
+                        <a href="contact.html" class="btn btn-primary btn-large">Get Custom Design</a>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <div class="logo">
+                            <i class="fas fa-leaf"></i>
+                            <span>GramVastra</span>
+                        </div>
+                        <p>Premium village clothing store celebrating authentic Indian craftsmanship</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>About the Village</h3>
+                    <ul>
+                        <li><a href="about.html">Our Story</a></li>
+                        <li><a href="about.html#artisans">Our Artisans</a></li>
+                        <li><a href="about.html#craftsmanship">Craftsmanship</a></li>
+                        <li><a href="blog.html">Village Stories</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Customer Support</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Policies</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                        <li><a href="#">Artisan Fair Trade</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 GramVastra. All rights reserved. Celebrating village craftsmanship.</p>
+                <button class="back-to-top" id="backToTop">
+                    <i class="fas fa-arrow-up"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-overlay" id="cartOverlay"></div>
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Shopping Cart</h3>
+                <button class="cart-close" id="cartClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <p class="empty-cart">Your cart is empty</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span class="total-amount">₹0</span>
+                </div>
+                <button class="btn btn-primary btn-full">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function toggleFilter(element) {
+            element.classList.toggle('collapsed');
+            element.nextElementSibling.classList.toggle('collapsed');
+        }
+
+        function applyFilters() {
+            showNotification('Filters applied successfully!');
+        }
+
+        function sortProducts() {
+            showNotification('Products sorted!');
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories & Collections - GramVastra</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .categories-hero {
+            padding: calc(80px + var(--spacing-xl)) 0 var(--spacing-xl);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: var(--tertiary-color);
+            text-align: center;
+        }
+
+        .categories-hero h1 {
+            color: var(--tertiary-color);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .categories-hero p {
+            color: var(--tertiary-color);
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .categories-section {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--tertiary-color);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .category-card {
+            background-color: var(--surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform var(--transition-medium);
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .category-image {
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-medium);
+        }
+
+        .category-card:hover .category-image img {
+            transform: scale(1.1);
+        }
+
+        .category-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: var(--spacing-md);
+        }
+
+        .category-title {
+            color: var(--tertiary-color);
+            font-family: var(--font-primary);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .category-content {
+            padding: var(--spacing-md);
+            text-align: center;
+        }
+
+        .category-description {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .category-stats {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .category-stat {
+            text-align: center;
+        }
+
+        .category-stat-number {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .category-stat-label {
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        .seasonal-collections {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--surface);
+        }
+
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .collection-card {
+            background-color: var(--tertiary-color);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform var(--transition-medium);
+        }
+
+        .collection-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .collection-image {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .collection-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-medium);
+        }
+
+        .collection-card:hover .collection-image img {
+            transform: scale(1.1);
+        }
+
+        .collection-badge {
+            position: absolute;
+            top: var(--spacing-md);
+            right: var(--spacing-md);
+            background-color: var(--accent-color);
+            color: var(--tertiary-color);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .collection-content {
+            padding: var(--spacing-md);
+            text-align: center;
+        }
+
+        .collection-title {
+            font-family: var(--font-primary);
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .collection-description {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .artisan-collections {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--tertiary-color);
+        }
+
+        .cta-section {
+            padding: var(--spacing-xl) 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: var(--tertiary-color);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: var(--tertiary-color);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .cta-section p {
+            color: var(--tertiary-color);
+            opacity: 0.9;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-white {
+            background-color: var(--tertiary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-white:hover {
+            background-color: var(--surface);
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+
+            .categories-grid,
+            .collections-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-stats {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-background"></div>
+        <div class="container">
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <div class="logo">
+                        <i class="fas fa-leaf"></i>
+                        <span>GramVastra</span>
+                    </div>
+                </div>
+                <div class="nav-menu" id="navMenu">
+                    <a href="index.html" class="nav-link"><span>Home</span></a>
+                    <a href="home2.html" class="nav-link"><span>Home 2</span></a>
+                    <a href="shop.html" class="nav-link"><span>Shop</span></a>
+                    <a href="categories.html" class="nav-link active"><span>Categories</span></a>
+                    <a href="about.html" class="nav-link"><span>About</span></a>
+                    <a href="pages/blog.html" class="nav-link"><span>Blog</span></a>
+                    <a href="dashboard.html" class="nav-link"><span>Dashboard</span></a>
+                    <a href="pages/contact.html" class="nav-link"><span>Contact</span></a>
+                    <a href="pages/login.html" class="nav-link mobile-only"><span>Login</span></a>
+                    <a href="pages/signup.html" class="nav-link mobile-only"><span>Sign Up</span></a>
+                </div>
+                <div class="nav-actions">
+                    <a href="dashboard.html" class="dashboard-icon" aria-label="Dashboard">
+                    </a>
+                    <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                    <button class="cart-btn" id="cartBtn"><i class="fas fa-shopping-cart"></i><span
+                            class="cart-count">0</span></button>
+                    <a href="pages/login.html" class="btn btn-outline">Login</a>
+                    <a href="pages/signup.html" class="btn btn-primary">Sign Up</a>
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle"><i class="fas fa-bars"></i></button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Categories Hero Section -->
+    <section class="categories-hero">
+        <div class="container">
+            <h1 class="fade-in">Categories & Collections</h1>
+            <p class="fade-in">Explore our curated categories and seasonal collections featuring authentic village
+                craftsmanship</p>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section" id="categories">
+        <div class="container">
+            <h2 class="section-title fade-in">Shop by Category</h2>
+            <div class="categories-grid">
+                <div class="category-card scale-in" id="women">
+                    <div class="category-image">
+                        <img src="https://media.istockphoto.com/id/93355119/photo/indian-saris.jpg?s=612x612&w=0&k=20&c=afmfiTJg0VAmIY6P_TJ_JYsTfGhUdevv18WXQRUZ8NQ="
+                            alt="Women's Sarees">
+                        <div class="category-overlay">
+                            <h3 class="category-title">Women's Sarees</h3>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <p class="category-description">Handwoven silk, cotton, and linen sarees featuring traditional
+                            designs and modern interpretations</p>
+                        <div class="category-stats">
+                            <div class="category-stat">
+                                <div class="category-stat-number">45+</div>
+                                <div class="category-stat-label">Designs</div>
+                            </div>
+                            <div class="category-stat">
+                                <div class="category-stat-number">12</div>
+                                <div class="category-stat-label">Artisans</div>
+                            </div>
+                        </div>
+                        <a href="shop.html?category=sarees" class="btn btn-primary">Explore Sarees</a>
+                    </div>
+                </div>
+
+                <div class="category-card scale-in" id="men">
+                    <div class="category-image">
+                        <img src="images/mens_dhoti_kurta.png" alt="Men's Dhotis">
+                        <div class="category-overlay">
+                            <h3 class="category-title">Men's Dhotis</h3>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <p class="category-description">Traditional cotton and silk dhotis with matching kurtas for
+                            ceremonial and daily wear</p>
+                        <div class="category-stats">
+                            <div class="category-stat">
+                                <div class="category-stat-number">28+</div>
+                                <div class="category-stat-label">Designs</div>
+                            </div>
+                            <div class="category-stat">
+                                <div class="category-stat-number">8</div>
+                                <div class="category-stat-label">Artisans</div>
+                            </div>
+                        </div>
+                        <a href="shop.html?category=dhotis" class="btn btn-primary">Explore Dhotis</a>
+                    </div>
+                </div>
+
+                <div class="category-card scale-in" id="kids">
+                    <div class="category-image">
+                        <img src="images/kids_ethnic_wear.png" alt="Kids Wear">
+                        <div class="category-overlay">
+                            <h3 class="category-title">Kids Wear</h3>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <p class="category-description">Comfortable and colorful ethnic wear for children featuring soft
+                            fabrics and playful designs</p>
+                        <div class="category-stats">
+                            <div class="category-stat">
+                                <div class="category-stat-number">22+</div>
+                                <div class="category-stat-label">Designs</div>
+                            </div>
+                            <div class="category-stat">
+                                <div class="category-stat-number">6</div>
+                                <div class="category-stat-label">Artisans</div>
+                            </div>
+                        </div>
+                        <a href="shop.html?category=kids" class="btn btn-primary">Explore Kids</a>
+                    </div>
+                </div>
+
+                <div class="category-card scale-in" id="handloom">
+                    <div class="category-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b3/Handloom_weaving_at_Sualkuchi_04.jpg"
+                            alt="Handloom">
+                        <div class="category-overlay">
+                            <h3 class="category-title">Handloom</h3>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <p class="category-description">Pure handloom fabrics and textiles showcasing traditional
+                            weaving techniques</p>
+                        <div class="category-stats">
+                            <div class="category-stat">
+                                <div class="category-stat-number">18+</div>
+                                <div class="category-stat-label">Designs</div>
+                            </div>
+                            <div class="category-stat">
+                                <div class="category-stat-number">10</div>
+                                <div class="category-stat-label">Artisans</div>
+                            </div>
+                        </div>
+                        <a href="shop.html?category=handloom" class="btn btn-primary">Explore Handloom</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seasonal Collections -->
+    <section class="seasonal-collections">
+        <div class="container">
+            <h2 class="section-title fade-in">Seasonal Collections</h2>
+            <div class="collections-grid">
+                <div class="collection-card scale-in">
+                    <div class="collection-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/68/PONGAL_FESTIVAL.jpg"
+                            alt="Pongal Collection">
+                        <span class="collection-badge">Limited</span>
+                    </div>
+                    <div class="collection-content">
+                        <h3 class="collection-title">Pongal Harvest Festival</h3>
+                        <p class="collection-description">Celebrate the harvest season with our special Pongal
+                            collection featuring traditional yellow and orange hues</p>
+                        <a href="shop.html?collection=pongal" class="btn btn-outline">View Collection</a>
+                    </div>
+                </div>
+
+                <div class="collection-card scale-in">
+                    <div class="collection-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Diwali,_the_festival_of_lights.jpg"
+                            alt="Diwali Collection">
+                        <span class="collection-badge">Popular</span>
+                    </div>
+                    <div class="collection-content">
+                        <h3 class="collection-title">Diwali Festival Lights</h3>
+                        <p class="collection-description">Illuminate your celebrations with our Diwali collection
+                            featuring vibrant colors and intricate embroidery</p>
+                        <a href="shop.html?collection=diwali" class="btn btn-outline">View Collection</a>
+                    </div>
+                </div>
+
+                <div class="collection-card scale-in">
+                    <div class="collection-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Indian_Village_Festival.jpg"
+                            alt="Village Fest Collection">
+                    </div>
+                    <div class="collection-content">
+                        <h3 class="collection-title">Village Festival Special</h3>
+                        <p class="collection-description">Traditional attire perfect for village festivals and community
+                            celebrations</p>
+                        <a href="shop.html?collection=village-fest" class="btn btn-outline">View Collection</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artisan Collections -->
+    <section class="artisan-collections">
+        <div class="container">
+            <h2 class="section-title fade-in">Artisan-Based Collections</h2>
+            <div class="collections-grid">
+                <div class="collection-card scale-in">
+                    <div class="collection-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Silk_Saree_weaving.jpg"
+                            alt="Master Weaver Collection">
+                        <span class="collection-badge">Premium</span>
+                    </div>
+                    <div class="collection-content">
+                        <h3 class="collection-title">Master Weaver Series</h3>
+                        <p class="collection-description">Exclusive pieces from our most experienced master weavers with
+                            decades of craftsmanship</p>
+                        <a href="shop.html?collection=master-weaver" class="btn btn-outline">View Collection</a>
+                    </div>
+                </div>
+
+                <div class="collection-card scale-in">
+                    <div class="collection-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Block_Printing_by_Artisan.jpg"
+                            alt="Emerging Artisans">
+                        <span class="collection-badge">New</span>
+                    </div>
+                    <div class="collection-content">
+                        <h3 class="collection-title">Emerging Artisans</h3>
+                        <p class="collection-description">Support the next generation of village artisans with fresh,
+                            contemporary designs</p>
+                        <a href="shop.html?collection=emerging" class="btn btn-outline">View Collection</a>
+                    </div>
+                </div>
+
+                <div class="collection-card scale-in">
+                    <div class="collection-image">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Kantha_embroidery.jpg"
+                            alt="Heritage Craft">
+                    </div>
+                    <div class="collection-content">
+                        <h3 class="collection-title">Heritage Craft Revival</h3>
+                        <p class="collection-description">Reviving ancient techniques and designs that were almost lost
+                            to time</p>
+                        <a href="shop.html?collection=heritage" class="btn btn-outline">View Collection</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content fade-in">
+                <h2>Find Your Perfect Village Style</h2>
+                <p>Can't decide? Let our artisans help you create custom pieces that reflect your unique style and
+                    cultural heritage</p>
+                <div class="cta-buttons">
+                    <a href="shop.html" class="btn btn-primary btn-large">Shop All Collections</a>
+                    <a href="contact.html" class="btn btn-white btn-large">Get Custom Design</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <div class="logo">
+                            <i class="fas fa-leaf"></i>
+                            <span>GramVastra</span>
+                        </div>
+                        <p>Premium village clothing store celebrating authentic Indian craftsmanship</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>About the Village</h3>
+                    <ul>
+                        <li><a href="about.html">Our Story</a></li>
+                        <li><a href="about.html#artisans">Our Artisans</a></li>
+                        <li><a href="about.html#craftsmanship">Craftsmanship</a></li>
+                        <li><a href="blog.html">Village Stories</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Customer Support</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Policies</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                        <li><a href="#">Artisan Fair Trade</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 GramVastra. All rights reserved. Celebrating village craftsmanship.</p>
+                <button class="back-to-top" id="backToTop">
+                    <i class="fas fa-arrow-up"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-overlay" id="cartOverlay"></div>
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Shopping Cart</h3>
+                <button class="cart-close" id="cartClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <p class="empty-cart">Your cart is empty</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span class="total-amount">₹0</span>
+                </div>
+                <button class="btn btn-primary btn-full">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

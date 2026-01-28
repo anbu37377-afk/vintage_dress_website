@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traditional & Festive Wear - GramVastra</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Home 2 Specific Styles */
+        .hero-festive {
+            padding: calc(80px + var(--spacing-xxl)) 0 var(--spacing-xxl);
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #CD853F 100%);
+            color: var(--tertiary-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-festive::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1549416878-b9ca95e26903?auto=format&fit=crop&q=80&w=1200');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .hero-festive .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-festive-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-festive-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            margin-bottom: var(--spacing-md);
+            line-height: 1.1;
+        }
+
+        .hero-festive-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: var(--spacing-xl);
+            opacity: 0.9;
+        }
+
+        .festive-badges {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .festive-badge {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: 50px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .craftsmanship-showcase {
+            padding: var(--spacing-xxl) 0;
+            background-color: var(--tertiary-color);
+        }
+
+        .craftsmanship-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+        }
+
+        .craftsmanship-card {
+            background-color: var(--surface);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 300px;
+        }
+
+        .craftsmanship-image {
+            background-size: cover;
+            background-position: center;
+        }
+
+        .craftsmanship-content {
+            padding: var(--spacing-lg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .craftsmanship-content h3 {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .sustainable-fashion {
+            padding: var(--spacing-xxl) 0;
+            background-color: var(--surface);
+        }
+
+        .sustainable-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--spacing-xl);
+            align-items: center;
+        }
+
+        .sustainable-text h2 {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .sustainable-stats {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-md);
+        }
+
+        .sustainable-stat {
+            background-color: var(--tertiary-color);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-lg);
+            text-align: center;
+        }
+
+        .sustainable-stat h3 {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .visual-storytelling {
+            padding: var(--spacing-xxl) 0;
+            background-color: var(--tertiary-color);
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .story-card {
+            background-color: var(--surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform var(--transition-medium);
+        }
+
+        .story-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .story-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .story-content {
+            padding: var(--spacing-md);
+        }
+
+        .story-content h3 {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .authenticity-highlights {
+            padding: var(--spacing-xxl) 0;
+            background-color: var(--surface);
+        }
+
+        .authenticity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .authenticity-card {
+            text-align: center;
+            padding: var(--spacing-lg);
+            background: linear-gradient(135deg, var(--tertiary-color) 0%, var(--surface) 100%);
+            border-radius: var(--radius-lg);
+            border: 2px solid var(--border);
+            transition: all var(--transition-medium);
+        }
+
+        .authenticity-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .authenticity-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto var(--spacing-md);
+            background-color: var(--primary-color);
+            color: var(--tertiary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .authenticity-card h3 {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .festive-cta {
+            padding: var(--spacing-xxl) 0;
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
+            color: var(--tertiary-color);
+            text-align: center;
+        }
+
+        .festive-cta h2 {
+            color: var(--tertiary-color);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .festive-cta p {
+            color: var(--tertiary-color);
+            opacity: 0.9;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-white {
+            background-color: var(--tertiary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-white:hover {
+            background-color: var(--surface);
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+
+            /* Prevent horizontal overflow */
+            body {
+                overflow-x: hidden;
+            }
+
+            .container {
+                padding: 0 16px;
+                max-width: 100%;
+            }
+
+            /* Hero Section Mobile */
+            .hero-festive {
+                padding: calc(60px + var(--spacing-lg)) 0 var(--spacing-lg);
+            }
+
+            .hero-festive-title {
+                font-size: 2rem;
+            }
+
+            .hero-festive-subtitle {
+                font-size: 1rem;
+            }
+
+            /* Craftsmanship Cards */
+            .craftsmanship-card {
+                grid-template-columns: 1fr;
+            }
+
+            .craftsmanship-card-image {
+                height: 250px;
+                width: 100%;
+            }
+
+            .craftsmanship-card-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            /* Grid Layouts */
+            .craftsmanship-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-lg);
+            }
+
+            .sustainable-content {
+                grid-template-columns: 1fr;
+            }
+
+            .story-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Images - Ensure they don't overflow */
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .card-image,
+            .story-image,
+            .sustainable-image {
+                width: 100%;
+                height: auto;
+                max-height: 300px;
+                object-fit: cover;
+            }
+
+            /* Festive Badges */
+            .festive-badges {
+                justify-content: center;
+                gap: var(--spacing-sm);
+            }
+
+            .festive-badge {
+                font-size: 0.875rem;
+                padding: var(--spacing-xs) var(--spacing-sm);
+            }
+
+            /* CTA Buttons */
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            .cta-buttons .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            /* Section Padding */
+            .craftsmanship-showcase,
+            .sustainable-section,
+            .artisan-stories,
+            .festive-cta {
+                padding: var(--spacing-xl) 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-background"></div>
+        <div class="container">
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <div class="logo">
+                        <i class="fas fa-leaf"></i>
+                        <span>GramVastra</span>
+                    </div>
+                </div>
+
+                <div class="nav-menu" id="navMenu">
+                    <a href="index.html" class="nav-link">
+                        <span>Home</span>
+                    </a>
+                    <a href="home2.html" class="nav-link active">
+                        <span>Home 2</span>
+                    </a>
+                    <a href="shop.html" class="nav-link">
+                        <span>Shop</span>
+                    </a>
+                    <a href="categories.html" class="nav-link">
+                        <span>Categories</span>
+                    </a>
+                    <a href="about.html" class="nav-link">
+                        <span>About</span>
+                    </a>
+                    <a href="pages/blog.html" class="nav-link">
+                        <span>Blog</span>
+                    </a>
+                    <a href="dashboard.html" class="nav-link">
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="pages/contact.html" class="nav-link">
+                        <span>Contact</span>
+                    </a>
+
+                    <!-- Mobile Menu Items -->
+                    <a href="pages/login.html" class="nav-link mobile-only">
+                        <span>Login</span>
+                    </a>
+                    <a href="pages/signup.html" class="nav-link mobile-only">
+                        <span>Sign Up</span>
+                    </a>
+                </div>
+
+                <div class="nav-actions">
+                    <a href="dashboard.html" class="dashboard-icon" aria-label="Dashboard">
+                    </a>
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="cart-btn" id="cartBtn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </button>
+                    <a href="pages/login.html" class="btn btn-outline">Login</a>
+                    <a href="pages/signup.html" class="btn btn-primary">Sign Up</a>
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Festive Hero Section -->
+    <section class="hero-festive">
+        <div class="container">
+            <div class="hero-festive-content fade-in">
+                <h1 class="hero-festive-title">Celebrate Traditions in Style</h1>
+                <p class="hero-festive-subtitle">Discover our exclusive collection of handcrafted festive wear that
+                    brings village heritage to your celebrations</p>
+
+                <div class="festive-badges scale-in">
+                    <div class="festive-badge">
+                        <i class="fas fa-star"></i>
+                        <span>Handwoven</span>
+                    </div>
+                    <div class="festive-badge">
+                        <i class="fas fa-leaf"></i>
+                        <span>100% Natural</span>
+                    </div>
+                    <div class="festive-badge">
+                        <i class="fas fa-award"></i>
+                        <span>Artisan Made</span>
+                    </div>
+                    <div class="festive-badge">
+                        <i class="fas fa-heart"></i>
+                        <span>Heritage Craft</span>
+                    </div>
+                </div>
+
+                <div class="hero-actions fade-in">
+                    <a href="shop.html?collection=festive" class="btn btn-primary btn-large">Shop Festive Collection</a>
+                    <a href="#craftsmanship" class="btn btn-outline btn-large">Explore Craftsmanship</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Craftsmanship Showcase -->
+    <section class="craftsmanship-showcase" id="craftsmanship">
+        <div class="container">
+            <h2 class="section-title fade-in">The Art of Festive Craftsmanship</h2>
+            <div class="craftsmanship-grid">
+                <div class="craftsmanship-card scale-in">
+                    <div class="craftsmanship-card-image"
+                        style="background-image: url('https://media.istockphoto.com/id/93355119/photo/indian-saris.jpg?s=612x612&w=0&k=20&c=afmfiTJg0VAmIY6P_TJ_JYsTfGhUdevv18WXQRUZ8NQ=');">
+                    </div>
+                    <div class="craftsmanship-content">
+                        <h3>Silk Weaving Magic</h3>
+                        <p>Traditional silk weaving techniques passed down through generations create the perfect
+                            festive sarees</p>
+                        <a href="shop.html?category=silk" class="btn btn-outline">Explore Silk</a>
+                    </div>
+                </div>
+
+                <div class="craftsmanship-card scale-in">
+                    <div class="craftsmanship-card-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=800&q=80');">
+                    </div>
+                    <div class="craftsmanship-content">
+                        <h3>Block Printing Art</h3>
+                        <p>Ancient block printing techniques create intricate patterns that tell stories of village
+                            culture</p>
+                        <a href="shop.html?category=printed" class="btn btn-outline">View Prints</a>
+                    </div>
+                </div>
+
+                <div class="craftsmanship-card scale-in">
+                    <div class="craftsmanship-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1543322748-028bb4658e3e?auto=format&fit=crop&w=800&q=80');">
+                    </div>
+                    <div class="craftsmanship-content">
+                        <h3>Embroidery Excellence</h3>
+                        <p>Hand-embroidered details add luxury and tradition to every festive garment</p>
+                        <a href="shop.html?category=embroidered" class="btn btn-outline">Shop Embroidered</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sustainable Fashion Section -->
+    <section class="sustainable-fashion">
+        <div class="container">
+            <div class="sustainable-content">
+                <div class="sustainable-text slide-in-left">
+                    <h2>Sustainable Rural Fashion</h2>
+                    <p>Our commitment to sustainability goes beyond just using natural materials. We support entire
+                        village ecosystems, ensuring that every purchase contributes to the preservation of traditional
+                        crafts and the economic empowerment of rural communities.</p>
+                    <p>From organic cotton cultivation to natural dye processes, every step in our production chain
+                        respects both nature and tradition. Our festive wear not only looks beautiful but also carries
+                        the promise of a sustainable future for village artisans.</p>
+                    <div class="sustainable-stats">
+                        <div class="sustainable-stat scale-in">
+                            <h3>0%</h3>
+                            <p>Carbon Footprint</p>
+                        </div>
+                        <div class="sustainable-stat scale-in">
+                            <h3>100%</h3>
+                            <p>Natural Materials</p>
+                        </div>
+                        <div class="sustainable-stat scale-in">
+                            <h3>50+</h3>
+                            <p>Village Partners</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="sustainable-image fade-in">
+                    <img src="https://images.unsplash.com/photo-1617019114583-affb34d1b3cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                        alt="Sustainable Fashion"
+                        style="width: 100%; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Storytelling Section -->
+    <section class="visual-storytelling">
+        <div class="container">
+            <h2 class="section-title fade-in">Stories Woven in Every Thread</h2>
+            <div class="story-grid">
+                <div class="story-card scale-in">
+                    <div class="story-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80');">
+                    </div>
+                    <div class="story-content">
+                        <h3>Wedding Traditions</h3>
+                        <p>Exquisite wedding attire that honors centuries of marriage customs</p>
+                        <a href="shop.html?collection=wedding" class="btn btn-outline">Wedding Collection</a>
+                    </div>
+                </div>
+
+                <div class="story-card scale-in">
+                    <div class="story-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1517016001691-2854440f85c1?auto=format&fit=crop&w=800&q=80');">
+                    </div>
+                    <div class="story-content">
+                        <h3>Festival Celebrations</h3>
+                        <p>Vibrant colors and designs that capture the joy of Indian festivals</p>
+                        <a href="shop.html?collection=festival" class="btn btn-outline">Festival Wear</a>
+                    </div>
+                </div>
+
+                <div class="story-card scale-in">
+                    <div class="story-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1536627242417-2073628c6e21?auto=format&fit=crop&w=800&q=80');">
+                    </div>
+                    <div class="story-content">
+                        <h3>Cultural Heritage</h3>
+                        <p>Preserving cultural identity through authentic traditional designs</p>
+                        <a href="shop.html?collection=heritage" class="btn btn-outline">Heritage Line</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Authenticity Highlights -->
+    <section class="authenticity-highlights">
+        <div class="container">
+            <h2 class="section-title fade-in">Authenticity & Craftsmanship</h2>
+            <div class="authenticity-grid">
+                <div class="authenticity-card scale-in">
+                    <div class="authenticity-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Certified Authentic</h3>
+                    <p>Every piece comes with authenticity certification from village craft councils</p>
+                </div>
+
+                <div class="authenticity-card scale-in">
+                    <div class="authenticity-icon">
+                        <i class="fas fa-hands"></i>
+                    </div>
+                    <h3>Handmade Excellence</h3>
+                    <p>Crafted by master artisans with decades of traditional experience</p>
+                </div>
+
+                <div class="authenticity-card scale-in">
+                    <div class="authenticity-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Premium Quality</h3>
+                    <p>Only the finest materials and techniques for lasting beauty</p>
+                </div>
+
+                <div class="authenticity-card scale-in">
+                    <div class="authenticity-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Timeless Designs</h3>
+                    <p>Classic patterns that transcend trends and generations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Festive CTA Section -->
+    <section class="festive-cta">
+        <div class="container">
+            <div class="cta-content fade-in">
+                <h2>Ready to Celebrate in Tradition?</h2>
+                <p>Explore our exclusive festive collection and bring home the essence of village craftsmanship</p>
+                <div class="cta-buttons">
+                    <a href="shop.html?collection=festive" class="btn btn-primary btn-large">Shop Festive Collection</a>
+                    <a href="categories.html" class="btn btn-white btn-large">Browse All Categories</a>
+                    <a href="about.html" class="btn btn-outline btn-large">Meet Our Artisans</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <div class="logo">
+                            <i class="fas fa-leaf"></i>
+                            <span>GramVastra</span>
+                        </div>
+                        <p>Premium village clothing store celebrating authentic Indian craftsmanship</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>About the Village</h3>
+                    <ul>
+                        <li><a href="about.html">Our Story</a></li>
+                        <li><a href="about.html#artisans">Our Artisans</a></li>
+                        <li><a href="about.html#craftsmanship">Craftsmanship</a></li>
+                        <li><a href="blog.html">Village Stories</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Customer Support</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Policies</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                        <li><a href="#">Artisan Fair Trade</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 GramVastra. All rights reserved. Celebrating village craftsmanship.</p>
+                <button class="back-to-top" id="backToTop">
+                    <i class="fas fa-arrow-up"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-overlay" id="cartOverlay"></div>
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Shopping Cart</h3>
+                <button class="cart-close" id="cartClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <p class="empty-cart">Your cart is empty</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span class="total-amount">₹0</span>
+                </div>
+                <button class="btn btn-primary btn-full">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | GramVastra</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { 
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: var(--spacing-lg);
+        }
+        .error-container { 
+            background-color: var(--surface); 
+            border-radius: var(--radius-xl); 
+            box-shadow: var(--shadow-xl); 
+            width: 100%; 
+            max-width: 600px; 
+            padding: var(--spacing-xl); 
+            text-align: center; 
+            animation: scaleIn 0.8s ease-out;
+        }
+        .error-icon { 
+            font-size: 6rem; 
+            color: var(--text-primary); 
+            margin-bottom: var(--spacing-lg); 
+            animation: fadeIn 1s ease-out;
+        }
+        .error-code { 
+            font-family: var(--font-primary); 
+            font-size: 4rem; 
+            font-weight: 900; 
+            color: var(--text-primary); 
+            margin-bottom: var(--spacing-md); 
+            line-height: 1;
+        }
+        .error-title { 
+            font-family: var(--font-primary); 
+            font-size: 2rem; 
+            color: var(--text-primary); 
+            margin-bottom: var(--spacing-md); 
+        }
+        .error-message { 
+            color: var(--text-secondary); 
+            font-size: 1.125rem; 
+            margin-bottom: var(--spacing-xl); 
+            line-height: 1.6; 
+        }
+        .village-illustration { 
+            margin: var(--spacing-xl) 0; 
+            border-radius: var(--radius-lg); 
+            overflow: hidden; 
+            box-shadow: var(--shadow-lg); 
+        }
+        .village-illustration img { 
+            width: 100%; 
+            height: auto; 
+            display: block; 
+        }
+        .error-actions { 
+            display: flex; 
+            gap: var(--spacing-md); 
+            justify-content: center; 
+            flex-wrap: wrap; 
+            margin-bottom: var(--spacing-xl); 
+        }
+        .search-box { 
+            margin-bottom: var(--spacing-xl); 
+        }
+        .search-box h3 { 
+            font-family: var(--font-primary); 
+            color: var(--text-primary); 
+            margin-bottom: var(--spacing-md); 
+        }
+        .search-form { 
+            display: flex; 
+            gap: var(--spacing-sm); 
+        }
+        .search-form input { 
+            flex: 1; 
+            padding: var(--spacing-md); 
+            border: 2px solid var(--border); 
+            border-radius: var(--radius-md); 
+            font-family: var(--font-secondary); 
+            transition: border-color var(--transition-fast); 
+        }
+        .search-form input:focus { 
+            outline: none; 
+            border-color: var(--primary-color); 
+        }
+        .helpful-links { 
+            margin-top: var(--spacing-xl); 
+            padding-top: var(--spacing-xl); 
+            border-top: 1px solid var(--border); 
+        }
+        .helpful-links h3 { 
+            font-family: var(--font-primary); 
+            color: var(--text-primary); 
+            margin-bottom: var(--spacing-md); 
+        }
+        .links-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: var(--spacing-sm); 
+        }
+        .links-grid a { 
+            color: var(--text-secondary); 
+            text-decoration: none; 
+            padding: var(--spacing-sm); 
+            border-radius: var(--radius-sm); 
+            transition: all var(--transition-fast); 
+            display: flex; 
+            align-items: center; 
+            gap: var(--spacing-xs); 
+        }
+        .links-grid a:hover { 
+            background-color: var(--tertiary-color); 
+            color: var(--primary-color); 
+        }
+        .btn-white { 
+            background-color: var(--tertiary-color); 
+            color: var(--primary-color); 
+        }
+        .btn-white:hover { 
+            background-color: var(--surface); 
+            color: var(--primary-color); 
+        }
+        @media (max-width: 768px) {
+            .error-code { 
+                font-size: 3rem; 
+            }
+            .error-title { 
+                font-size: 1.5rem; 
+            }
+            .error-actions { 
+                flex-direction: column; 
+                align-items: center; 
+            }
+            .search-form { 
+                flex-direction: column; 
+            }
+            .links-grid { 
+                grid-template-columns: 1fr; 
+            }
+        }
+        @media (max-width: 480px) {
+            .error-container { 
+                padding: var(--spacing-lg); 
+                margin: var(--spacing-md); 
+            }
+            .error-icon { 
+                font-size: 4rem; 
+            }
+            .error-code { 
+                font-size: 2.5rem; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <!-- Error Icon -->
+        <div class="error-icon">
+            <i class="fas fa-search-location"></i>
+        </div>
+        
+        <!-- Error Code -->
+        <div class="error-code fade-in">404</div>
+        
+        <!-- Error Title -->
+        <h1 class="error-title scale-in">Lost in the Village?</h1>
+        
+        <!-- Error Message -->
+        <p class="error-message slide-in-left">
+            Oops! The page you're looking for seems to have wandered off into our village fields. 
+            Don't worry - even our best artisans sometimes misplace their threads!
+        </p>
+        
+        <!-- Village Illustration -->
+        <div class="village-illustration fade-in">
+            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Village Path">
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="error-actions scale-in">
+            <a href="../index.html" class="btn btn-primary btn-large">
+                <i class="fas fa-home"></i> Go Home
+            </a>
+            <a href="../shop.html" class="btn btn-white btn-large">
+                <i class="fas fa-shopping-bag"></i> Browse Shop
+            </a>
+            <a href="javascript:history.back()" class="btn btn-outline btn-large">
+                <i class="fas fa-arrow-left"></i> Go Back
+            </a>
+        </div>
+        
+        <!-- Search Box -->
+        <div class="search-box slide-in-left">
+            <h3>Search for What You Need</h3>
+            <form class="search-form" onsubmit="handleSearch(event)">
+                <input type="text" placeholder="Search for products, artisans, or stories..." required>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </form>
+        </div>
+        
+        <!-- Helpful Links -->
+        <div class="helpful-links fade-in">
+            <h3>Popular Destinations</h3>
+            <div class="links-grid">
+                <a href="../shop.html">
+                    <i class="fas fa-shopping-bag"></i>
+                    Shop Collection
+                </a>
+                <a href="../categories.html">
+                    <i class="fas fa-th-large"></i>
+                    Browse Categories
+                </a>
+                <a href="blog.html">
+                    <i class="fas fa-book-open"></i>
+                    Village Stories
+                </a>
+                <a href="../about.html">
+                    <i class="fas fa-users"></i>
+                    Meet Artisans
+                </a>
+                <a href="../home2.html">
+                    <i class="fas fa-star"></i>
+                    Festive Collection
+                </a>
+                <a href="contact.html">
+                    <i class="fas fa-envelope"></i>
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../script.js"></script>
+    <script>
+        function handleSearch(event) {
+            event.preventDefault();
+            const searchTerm = event.target.querySelector('input[type="text"]').value;
+            
+            // Redirect to shop page with search query
+            window.location.href = `../shop.html?search=${encodeURIComponent(searchTerm)}`;
+        }
+        
+        // Log 404 errors for analytics (in real implementation)
+        document.addEventListener('DOMContentLoaded', () => {
+            const errorData = {
+                url: window.location.href,
+                referrer: document.referrer,
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent
+            };
+            
+            // Store error data (in real app, this would be sent to analytics service)
+            const errors = JSON.parse(localStorage.getItem('404errors') || '[]');
+            errors.push(errorData);
+            localStorage.setItem('404errors', JSON.stringify(errors));
+            
+            console.log('404 Error logged:', errorData);
+        });
+    </script>
+</body>
+</html>

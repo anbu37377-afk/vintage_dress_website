@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Master Weavers of Banaras - GramVastra Blog</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .blog-hero {
+            padding: calc(80px + var(--spacing-xl)) 0 var(--spacing-xl);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: var(--tertiary-color);
+            text-align: center;
+        }
+
+        .blog-hero h1 {
+            color: var(--tertiary-color);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .blog-hero p {
+            color: var(--tertiary-color);
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .blog-detail {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--tertiary-color);
+        }
+
+        .blog-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .blog-article {
+            background-color: var(--surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .blog-hero-image {
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .blog-hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: var(--spacing-xl);
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .blog-category {
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        .blog-date {
+            color: var(--text-light);
+        }
+
+        .blog-reading-time {
+            color: var(--text-light);
+        }
+
+        .blog-title {
+            font-family: var(--font-primary);
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.2;
+        }
+
+        .blog-author-box {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+            padding: var(--spacing-lg);
+            background-color: var(--tertiary-color);
+            border-radius: var(--radius-lg);
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-info {
+            flex: 1;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .author-role {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .author-bio {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            line-height: 1.4;
+        }
+
+        .blog-body {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .blog-body h2 {
+            color: var(--text-primary);
+            margin: var(--spacing-xl) 0 var(--spacing-md);
+        }
+
+        .blog-body h3 {
+            color: var(--text-primary);
+            margin: var(--spacing-lg) 0 var(--spacing-sm);
+        }
+
+        .blog-body p {
+            margin-bottom: var(--spacing-md);
+            line-height: 1.7;
+        }
+
+        .blog-body img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-lg);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .artisan-quote {
+            background: linear-gradient(135deg, var(--tertiary-color) 0%, var(--surface) 100%);
+            border-left: 4px solid var(--accent-color);
+            padding: var(--spacing-lg);
+            margin: var(--spacing-lg) 0;
+            border-radius: var(--radius-lg);
+        }
+
+        .artisan-quote p {
+            font-style: italic;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .artisan-quote cite {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .blog-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .tag {
+            background-color: var(--tertiary-color);
+            color: var(--text-secondary);
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 0.875rem;
+            transition: all var(--transition-fast);
+        }
+
+        .tag:hover {
+            background-color: var(--primary-color);
+            color: var(--tertiary-color);
+        }
+
+        .blog-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--border);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .social-share {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .share-btn {
+            width: 40px;
+            height: 40px;
+            background-color: var(--tertiary-color);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .share-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--tertiary-color);
+        }
+
+        .related-posts {
+            margin-top: var(--spacing-xl);
+        }
+
+        .related-posts h3 {
+            font-family: var(--font-primary);
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .related-card {
+            background-color: var(--surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform var(--transition-medium);
+        }
+
+        .related-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .related-image {
+            height: 150px;
+            overflow: hidden;
+        }
+
+        .related-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .related-content {
+            padding: var(--spacing-md);
+        }
+
+        .related-title {
+            font-family: var(--font-primary);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .related-excerpt {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .read-more {
+            color: var(--primary-color);
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .blog-title {
+                font-size: 1.5rem;
+            }
+
+            .blog-meta {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+            }
+
+            .blog-author-box {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-background"></div>
+        <div class="container">
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <div class="logo">
+                        <i class="fas fa-leaf"></i>
+                        <span>GramVastra</span>
+                    </div>
+                </div>
+                <div class="nav-menu" id="navMenu">
+                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="../home2.html" class="nav-link">Home 2</a>
+                    <a href="../shop.html" class="nav-link">Shop</a>
+                    <a href="../categories.html" class="nav-link">Categories</a>
+                    <a href="../about.html" class="nav-link">About</a>
+                    <a href="blog.html" class="nav-link active">Blog</a>
+                    <a href="../dashboard.html" class="nav-link">Dashboard</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="cart-btn" id="cartBtn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </button>
+                    <a href="login.html" class="btn btn-outline">Login</a>
+                    <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Blog Hero Section -->
+    <section class="blog-hero">
+        <div class="container">
+            <h1 class="fade-in">The Master Weavers of Banaras</h1>
+            <p class="fade-in">A journey into the heart of India's most prestigious silk weaving tradition</p>
+        </div>
+    </section>
+
+    <!-- Blog Detail Section -->
+    <section class="blog-detail">
+        <div class="container">
+            <div class="blog-container">
+                <article class="blog-article fade-in">
+                    <div class="blog-hero-image">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+                            alt="Banarasi Weaving">
+                    </div>
+
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-category">Artisan Stories</span>
+                            <span>•</span>
+                            <span class="blog-date">March 15, 2026</span>
+                            <span>•</span>
+                            <span class="blog-reading-time">8 min read</span>
+                        </div>
+
+                        <h1 class="blog-title">The Master Weavers of Banaras: Guardians of a Royal Legacy</h1>
+
+                        <div class="blog-author-box">
+                            <div class="author-avatar">
+                                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80"
+                                    alt="Priya Sharma">
+                            </div>
+                            <div class="author-info">
+                                <div class="author-name">Priya Sharma</div>
+                                <div class="author-role">Craft Journalist & Cultural Anthropologist</div>
+                                <div class="author-bio">Dedicated to preserving and sharing the stories of India's
+                                    traditional artisans and their centuries-old crafts.</div>
+                            </div>
+                        </div>
+
+                        <div class="blog-body">
+                            <p>In the narrow lanes of Banaras, where the scent of jasmine mingles with the rhythmic
+                                clatter of handlooms, a timeless tradition continues to thrive. Here, master weavers
+                                create some of the world's most exquisite silk fabrics, each thread telling a story of
+                                heritage, skill, and unwavering dedication.</p>
+
+                            <h2>A Legacy Woven in Gold</h2>
+                            <p>The Banarasi silk tradition dates back over 2,000 years, flourishing under the patronage
+                                of Mughal emperors and later, Indian royalty. These masterpieces weren't just fabrics;
+                                they were symbols of status, wealth, and artistic excellence. Today, the weavers of
+                                Banaras continue this legacy, creating sarees that can take anywhere from 15 days to 6
+                                months to complete, depending on the complexity of the design.</p>
+
+                            <img src="https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                                alt="Weaving Process">
+
+                            <div class="artisan-quote">
+                                <p>"Every Banarasi saree is a piece of art. It's not just fabric; it's poetry woven in
+                                    silk and gold. When I weave, I'm not just creating a saree; I'm preserving a piece
+                                    of our culture for future generations."</p>
+                                <cite>– Mohammad Rafiq, Master Weaver with 35 years of experience</cite>
+                            </div>
+
+                            <h2>The Art of Creation</h2>
+                            <p>The process of creating a Banarasi saree is a testament to human patience and skill. It
+                                begins with the careful selection of the finest silk threads, often sourced from
+                                different parts of India. The real magic happens on the handloom, where weavers work in
+                                pairs, their hands moving in perfect harmony to create intricate patterns using gold and
+                                silver threads (zari).</p>
+
+                            <h3>Key Techniques</h3>
+                            <p>The weaving involves several specialized techniques:</p>
+                            <p><strong>Jangla:</strong> Intricate vine-like patterns that flow across the fabric<br>
+                                <strong>Butidar:</strong> Scattered floral motifs that appear to float on the
+                                surface<br>
+                                <strong>Cutwork:</strong> A technique where extra threads are cut away to create raised
+                                patterns<br>
+                                <strong>Tissue:</strong> A lightweight fabric with gold or silver threads woven
+                                throughout
+                            </p>
+
+                            <img src="https://images.unsplash.com/photo-1617019114583-affb34d1b3cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                                alt="Artisan at Work">
+
+                            <h2>Challenges in Modern Times</h2>
+                            <p>Despite their incredible skill, Banarasi weavers face numerous challenges in the modern
+                                era. The rise of power loom imitations, fluctuating raw material costs, and changing
+                                fashion trends have threatened this traditional craft. Many young weavers are leaving
+                                the profession for more lucrative opportunities, putting the future of this art form at
+                                risk.</p>
+
+                            <div class="artisan-quote">
+                                <p>"My grandfather taught my father, and my father taught me. I worry about who will
+                                    teach the next generation. We need people to understand the value of handcrafted
+                                    work – not just the price, but the soul that goes into each piece."</p>
+                                <cite>– Sita Devi, Third-generation weaver</cite>
+                            </div>
+
+                            <h2>A Renaissance of Tradition</h2>
+                            <p>However, there's hope on the horizon. A growing appreciation for sustainable and
+                                traditional fashion has led to renewed interest in Banarasi weaves. Designers are
+                                collaborating with master weavers to create contemporary designs while preserving
+                                traditional techniques. Organizations like GramVastra are working to ensure fair wages
+                                and better working conditions for these artisans.</p>
+
+                            <p>The future of Banarasi weaving lies in finding the perfect balance between tradition and
+                                innovation – honoring the ancient techniques while adapting to modern tastes and
+                                markets. Each time you choose a handcrafted Banarasi piece, you're not just buying a
+                                beautiful fabric; you're supporting a family, preserving a tradition, and becoming part
+                                of a story that spans centuries.</p>
+                        </div>
+
+                        <div class="blog-tags">
+                            <a href="#" class="tag">Banarasi Silk</a>
+                            <a href="#" class="tag">Handloom</a>
+                            <a href="#" class="tag">Artisan Stories</a>
+                            <a href="#" class="tag">Traditional Craft</a>
+                            <a href="#" class="tag">Heritage</a>
+                            <a href="#" class="tag">Sustainable Fashion</a>
+                        </div>
+
+                        <div class="blog-actions">
+                            <div class="social-share">
+                                <button class="share-btn" title="Share on Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </button>
+                                <button class="share-btn" title="Share on Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </button>
+                                <button class="share-btn" title="Share on Instagram">
+                                    <i class="fab fa-instagram"></i>
+                                </button>
+                                <button class="share-btn" title="Share on WhatsApp">
+                                    <i class="fab fa-whatsapp"></i>
+                                </button>
+                            </div>
+                            <a href="blog.html" class="btn btn-outline">
+                                <i class="fas fa-arrow-left"></i> Back to Blog
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Related Posts -->
+                <div class="related-posts">
+                    <h3>Related Stories</h3>
+                    <div class="related-grid">
+                        <div class="related-card scale-in">
+                            <div class="related-image">
+                                <img src="https://images.unsplash.com/photo-1578632292335-df3abbb0d586?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                                    alt="Natural Dyes">
+                            </div>
+                            <div class="related-content">
+                                <h4 class="related-title">Natural Dyes: Colors from Earth</h4>
+                                <p class="related-excerpt">Explore the ancient tradition of natural dyeing in Indian
+                                    villages...</p>
+                                <a href="blog-details.html" class="read-more">Read More →</a>
+                            </div>
+                        </div>
+
+                        <div class="related-card scale-in">
+                            <div class="related-image">
+                                <img src="https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                                    alt="Block Printing">
+                            </div>
+                            <div class="related-content">
+                                <h4 class="related-title">The Art of Block Printing</h4>
+                                <p class="related-excerpt">Discover the intricate craft of traditional block printing...
+                                </p>
+                                <a href="blog-details.html" class="read-more">Read More →</a>
+                            </div>
+                        </div>
+
+                        <div class="related-card scale-in">
+                            <div class="related-image">
+                                <img src="https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                                    alt="Village Fashion">
+                            </div>
+                            <div class="related-content">
+                                <h4 class="related-title">Modern Twist to Traditional Wear</h4>
+                                <p class="related-excerpt">How young designers are reimagining village clothing...</p>
+                                <a href="blog-details.html" class="read-more">Read More →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <div class="logo">
+                            <i class="fas fa-leaf"></i>
+                            <span>GramVastra</span>
+                        </div>
+                        <p>Premium village clothing store celebrating authentic Indian craftsmanship</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>About the Village</h3>
+                    <ul>
+                        <li><a href="about.html">Our Story</a></li>
+                        <li><a href="about.html#artisans">Our Artisans</a></li>
+                        <li><a href="about.html#craftsmanship">Craftsmanship</a></li>
+                        <li><a href="blog.html">Village Stories</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Customer Support</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Policies</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                        <li><a href="#">Artisan Fair Trade</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 GramVastra. All rights reserved. Celebrating village craftsmanship.</p>
+                <button class="back-to-top" id="backToTop">
+                    <i class="fas fa-arrow-up"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-overlay" id="cartOverlay"></div>
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Shopping Cart</h3>
+                <button class="cart-close" id="cartClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <p class="empty-cart">Your cart is empty</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span class="total-amount">₹0</span>
+                </div>
+                <button class="btn btn-primary btn-full">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+
+</html>
