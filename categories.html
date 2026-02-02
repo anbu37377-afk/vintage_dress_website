@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Categories & Collections - GramVastra</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,6 +68,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: top;
             transition: transform var(--transition-medium);
         }
 
@@ -160,6 +162,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: top;
             transition: transform var(--transition-medium);
         }
 
@@ -263,12 +266,12 @@
         <div class="header-background"></div>
         <div class="container">
             <nav class="navbar">
-                <div class="nav-brand">
+                <a href="index.html" class="nav-brand">
                     <div class="logo">
                         <i class="fas fa-leaf"></i>
                         <span>GramVastra</span>
                     </div>
-                </div>
+                </a>
                 <div class="nav-menu" id="navMenu">
                     <a href="index.html" class="nav-link"><span>Home</span></a>
                     <a href="home2.html" class="nav-link"><span>Home 2</span></a>
@@ -336,7 +339,8 @@
 
                 <div class="category-card scale-in" id="men">
                     <div class="category-image">
-                        <img src="images/mens_dhoti_kurta.png" alt="Men's Dhotis">
+                        <img src="https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?auto=format&fit=crop&q=80&w=800"
+                            alt="Men's Dhotis">
                         <div class="category-overlay">
                             <h3 class="category-title">Men's Dhotis</h3>
                         </div>
@@ -360,7 +364,8 @@
 
                 <div class="category-card scale-in" id="kids">
                     <div class="category-image">
-                        <img src="images/kids_ethnic_wear.png" alt="Kids Wear">
+                        <img src="https://cdn.shopify.com/s/files/1/0266/6276/4597/files/floral_ethnic_wear_for_kids_by_utsa.jpg?v=1597833877"
+                            alt="Kids Wear">
                         <div class="category-overlay">
                             <h3 class="category-title">Kids Wear</h3>
                         </div>
@@ -384,7 +389,7 @@
 
                 <div class="category-card scale-in" id="handloom">
                     <div class="category-image">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b3/Handloom_weaving_at_Sualkuchi_04.jpg"
+                        <img src="https://rmkv.com/cdn/shop/articles/hanloom_machine_5c5b5a2c-4a85-4454-b06e-79e9c8ccd88b.jpg?v=1767875524"
                             alt="Handloom">
                         <div class="category-overlay">
                             <h3 class="category-title">Handloom</h3>
@@ -404,6 +409,56 @@
                             </div>
                         </div>
                         <a href="shop.html?category=handloom" class="btn btn-primary">Explore Handloom</a>
+                    </div>
+                </div>
+
+                <div class="category-card scale-in" id="accessories">
+                    <div class="category-image">
+                        <img src="https://caleidoscope.in/wp-content/uploads/2014/12/Traditional-Indian-Fashion-Accessories.jpg"
+                            alt="Traditional Accessories">
+                        <div class="category-overlay">
+                            <h3 class="category-title">Traditional Accessories</h3>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <p class="category-description">Handcrafted tribal jewelry, embroidered bags, and authentic
+                            traditional stoles</p>
+                        <div class="category-stats">
+                            <div class="category-stat">
+                                <div class="category-stat-number">35+</div>
+                                <div class="category-stat-label">Designs</div>
+                            </div>
+                            <div class="category-stat">
+                                <div class="category-stat-number">15</div>
+                                <div class="category-stat-label">Artisans</div>
+                            </div>
+                        </div>
+                        <a href="shop.html?category=accessories" class="btn btn-primary">Explore Accessories</a>
+                    </div>
+                </div>
+
+                <div class="category-card scale-in" id="kurtas">
+                    <div class="category-image">
+                        <img src="https://www.misri.in/cdn/shop/products/KeerthySureshInPinkReshamVNeckKurtaSet_0000_1.jpg?v=1643304944&width=800"
+                            alt="Organic Kurtas">
+                        <div class="category-overlay">
+                            <h3 class="category-title">Organic Kurtas</h3>
+                        </div>
+                    </div>
+                    <div class="category-content">
+                        <p class="category-description">Comfortable daily wear kurtas made from 100% organic cotton and
+                            natural dyes</p>
+                        <div class="category-stats">
+                            <div class="category-stat">
+                                <div class="category-stat-number">40+</div>
+                                <div class="category-stat-label">Designs</div>
+                            </div>
+                            <div class="category-stat">
+                                <div class="category-stat-number">20</div>
+                                <div class="category-stat-label">Artisans</div>
+                            </div>
+                        </div>
+                        <a href="shop.html?category=kurtas" class="btn btn-primary">Explore Kurtas</a>
                     </div>
                 </div>
             </div>

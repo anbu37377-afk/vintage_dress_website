@@ -244,6 +244,7 @@ a:hover {
 
 .btn-primary:hover {
   background-color: var(--accent-color);
+  color: var(--tertiary-color);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
@@ -455,7 +456,7 @@ a:hover {
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-lg);
   object-fit: cover;
-  object-position: center;
+  object-position: top;
 }
 
 /* ===== Categories Section ===== */
@@ -506,7 +507,7 @@ a:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: top;
   transition: transform var(--transition-medium);
 }
 
@@ -600,7 +601,7 @@ a:hover {
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-lg);
   object-fit: cover;
-  object-position: center;
+  object-position: top;
 }
 
 /* ===== Why Choose Section ===== */
@@ -688,7 +689,7 @@ a:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: top;
   transition: transform var(--transition-medium);
 }
 
@@ -824,7 +825,8 @@ a:hover {
 }
 
 .footer-brand p {
-  color: var(--text-secondary);
+  color: var(--tertiary-color);
+  opacity: 0.8;
   margin-bottom: var(--spacing-md);
 }
 
@@ -842,8 +844,9 @@ a:hover {
 }
 
 .footer-section ul li a {
-  color: var(--text-secondary);
-  transition: color var(--transition-fast);
+  color: var(--tertiary-color);
+  opacity: 0.8;
+  transition: all var(--transition-fast);
 }
 
 .footer-section ul li a:hover {
@@ -1035,8 +1038,23 @@ a:hover {
   animation: slideInLeft 0.8s ease-out;
 }
 
+/* Medium screen header optimization */
+@media (min-width: 1151px) and (max-width: 1350px) {
+  .nav-brand {
+    margin-right: var(--spacing-md);
+  }
+
+  .nav-menu {
+    gap: var(--spacing-sm);
+  }
+
+  .nav-link {
+    font-size: 0.85rem;
+  }
+}
+
 /* ===== Responsive Design ===== */
-@media (max-width: 768px) {
+@media (max-width: 1150px) {
 
   html,
   body {
@@ -1078,8 +1096,15 @@ a:hover {
     align-items: center;
   }
 
+  /* Nav Actions - Keep buttons visible if space permits, or hide if extremely narrow */
+  .nav-actions {
+    gap: 8px;
+  }
+
   .nav-actions .btn {
-    display: none;
+    display: flex;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.75rem;
   }
 
   /* Icon Sizing for Mobile */
@@ -1290,13 +1315,13 @@ a:hover {
   display: block;
 }
 
-@media (min-width: 769px) {
+@media (min-width: 1151px) {
   .mobile-only {
     display: none !important;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1150px) {
   .desktop-only {
     display: none !important;
   }
@@ -1307,24 +1332,89 @@ a:hover {
   display: flex;
   min-height: 100vh;
   background-color: var(--tertiary-color);
-  padding-top: 80px;
-  /* Adjust for fixed header */
+  padding-top: 0;
 }
 
 .dashboard-sidebar {
-  display: none;
+  display: flex;
+  flex-direction: column;
   /* Hidden on mobile by default */
   width: 250px;
   background-color: var(--surface);
   border-right: 1px solid var(--border);
   padding: var(--spacing-md);
   position: fixed;
-  top: 73px;
-  /* Below header */
+  top: 0;
   bottom: 0;
   left: 0;
   overflow-y: auto;
-  z-index: 900;
+  z-index: 1100;
+  transition: transform var(--transition-medium);
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--border);
+}
+
+.sidebar-header .logo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  text-decoration: none;
+}
+
+.sidebar-header .logo i {
+  color: var(--accent-color);
+  font-size: 1.5rem;
+}
+
+.sidebar-header .logo span {
+  font-family: var(--font-primary);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.sidebar-close {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.dashboard-sidebar-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  width: 45px;
+  height: 45px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 1.25rem;
+  z-index: 2000 !important;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+}
+
+.logout-link {
+  margin-top: var(--spacing-xl);
+  color: var(--error) !important;
+}
+
+.logout-link:hover {
+  background-color: rgba(244, 67, 54, 0.1) !important;
 }
 
 .sidebar-menu {
@@ -1372,6 +1462,7 @@ a:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: var(--spacing-md);
 }
 
 .dashboard-title {
@@ -1614,13 +1705,13 @@ a:hover {
 /* Desktop Logic */
 @media (min-width: 992px) {
   .dashboard-sidebar {
-    display: block;
-    top: 73px;
-    height: calc(100vh - 73px);
+    display: flex;
+    top: 0;
+    height: 100vh;
   }
 
   .dashboard-container {
-    padding-top: 73px;
+    padding-top: 0;
   }
 
   .dashboard-main {
@@ -1630,11 +1721,38 @@ a:hover {
     width: auto;
   }
 
-  .dashboard-bottom-nav {
+  .dashboard-bottom-nav,
+  .dashboard-sidebar-toggle {
     display: none;
   }
 
   .dashboard-content-grid {
     grid-template-columns: 2fr 1fr;
+  }
+}
+
+@media (max-width: 991px) {
+  .dashboard-sidebar {
+    transform: translateX(-100%);
+    display: flex;
+  }
+
+  .dashboard-sidebar.active {
+    transform: translateX(0);
+  }
+
+  .sidebar-close {
+    display: block;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-right: 60px;
+    /* Space for the floating toggle */
+  }
+
+  .dashboard-title {
+    font-size: 1.25rem;
   }
 }

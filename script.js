@@ -59,27 +59,36 @@ function closeCart() {
     document.body.style.overflow = '';
 }
 
-function addToCart(product) {
+function addToCart(productOrId) {
+    let product;
+    if (typeof productOrId === 'number' || typeof productOrId === 'string') {
+        product = products.find(p => p.id == productOrId);
+    } else {
+        product = productOrId;
+    }
+
+    if (!product) return;
+
     const existingItem = cart.find(item => item.id === product.id);
-    
+
     if (existingItem) {
         existingItem.quantity++;
     } else {
         cart.push({ ...product, quantity: 1 });
     }
-    
+
     updateCartUI();
     showNotification('Product added to cart!');
 }
 
 function removeFromCart(productId) {
-    cart = cart.filter(item => item.id !== productId);
+    cart = cart.filter(item => item.id != productId);
     updateCartUI();
     showNotification('Product removed from cart!');
 }
 
 function updateQuantity(productId, change) {
-    const item = cart.find(item => item.id === productId);
+    const item = cart.find(item => item.id == productId);
     if (item) {
         item.quantity += change;
         if (item.quantity <= 0) {
@@ -93,36 +102,41 @@ function updateQuantity(productId, change) {
 function updateCartUI() {
     // Update cart count
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    cartCount.textContent = totalItems;
-    
+    const cartCountElement = document.querySelector('.cart-count');
+    if (cartCountElement) cartCountElement.textContent = totalItems;
+
     // Update cart items
     if (cart.length === 0) {
         cartItems.innerHTML = '<p class="empty-cart">Your cart is empty</p>';
     } else {
-        cartItems.innerHTML = cart.map(item => `
+        cartItems.innerHTML = cart.map(item => {
+            const imageSrc = item.image || 'https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?auto=format&fit=crop&q=80&w=200';
+            return `
             <div class="cart-item">
                 <div class="cart-item-image">
-                    <img src="${item.image}" alt="${item.name}">
+                    <img src="${imageSrc}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?auto=format&fit=crop&q=80&w=200'">
                 </div>
                 <div class="cart-item-details">
                     <h4>${item.name}</h4>
                     <p class="cart-item-price">₹${item.price}</p>
                     <div class="cart-item-quantity">
-                        <button onclick="updateQuantity('${item.id}', -1)">-</button>
+                        <button onclick="updateQuantity(${item.id}, -1)">-</button>
                         <span>${item.quantity}</span>
-                        <button onclick="updateQuantity('${item.id}', 1)">+</button>
+                        <button onclick="updateQuantity(${item.id}, 1)">+</button>
                     </div>
                 </div>
-                <button class="cart-item-remove" onclick="removeFromCart('${item.id}')">
+                <button class="cart-item-remove" onclick="removeFromCart(${item.id})">
                     <i class="fas fa-trash"></i>
                 </button>
             </div>
-        `).join('');
+        `;
+        }).join('');
     }
-    
+
     // Update total
     const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    document.querySelector('.total-amount').textContent = `₹${total}`;
+    const totalAmountElement = document.querySelector('.total-amount');
+    if (totalAmountElement) totalAmountElement.textContent = `₹${total}`;
 }
 
 // ===== Animations =====
@@ -131,7 +145,7 @@ function initializeAnimations() {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -140,7 +154,7 @@ function initializeAnimations() {
             }
         });
     }, observerOptions);
-    
+
     // Observe elements with animation classes
     document.querySelectorAll('.fade-in, .scale-in, .slide-in-left').forEach(el => {
         el.style.opacity = '0';
@@ -154,28 +168,28 @@ function initializeAnimations() {
 function setupEventListeners() {
     // Mobile menu
     mobileMenuToggle.addEventListener('click', toggleMobileMenu);
-    
+
     // Theme toggle
     themeToggle.addEventListener('click', toggleTheme);
-    
+
     // Cart
     cartBtn.addEventListener('click', toggleCart);
     cartOverlay.addEventListener('click', closeCart);
     cartClose.addEventListener('click', closeCart);
-    
+
     // Back to top
     backToTop.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-    
+
     // Newsletter form
     if (newsletterForm) {
         newsletterForm.addEventListener('submit', handleNewsletterSubmit);
     }
-    
+
     // Scroll events
     window.addEventListener('scroll', handleScroll);
-    
+
     // Close mobile menu when clicking outside
     document.addEventListener('click', (e) => {
         if (!navMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
@@ -190,14 +204,14 @@ function setupEventListeners() {
 function handleScroll() {
     const header = document.querySelector('.header');
     const backToTopBtn = document.getElementById('backToTop');
-    
+
     // Header shadow on scroll
     if (window.scrollY > 10) {
         header.style.boxShadow = 'var(--shadow-md)';
     } else {
         header.style.boxShadow = 'none';
     }
-    
+
     // Back to top button visibility
     if (window.scrollY > 300) {
         backToTopBtn.style.opacity = '1';
@@ -212,7 +226,7 @@ function handleScroll() {
 function handleNewsletterSubmit(e) {
     e.preventDefault();
     const email = e.target.querySelector('input[type="email"]').value;
-    
+
     if (email) {
         showNotification('Thank you for subscribing! Check your email for confirmation.');
         e.target.reset();
@@ -224,7 +238,7 @@ function showNotification(message, type = 'success') {
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.textContent = message;
-    
+
     notification.style.cssText = `
         position: fixed;
         top: 20px;
@@ -239,15 +253,15 @@ function showNotification(message, type = 'success') {
         transform: translateX(100%);
         transition: all 0.3s ease;
     `;
-    
+
     document.body.appendChild(notification);
-    
+
     // Animate in
     setTimeout(() => {
         notification.style.opacity = '1';
         notification.style.transform = 'translateX(0)';
     }, 100);
-    
+
     // Remove after 3 seconds
     setTimeout(() => {
         notification.style.opacity = '0';
@@ -259,27 +273,76 @@ function showNotification(message, type = 'success') {
 }
 
 // ===== Product Data =====
-const sampleProducts = [
+const products = [
     {
         id: 1,
-        name: 'Handwoven Silk Saree',
+        name: 'Handwoven Banarasi Silk Saree',
         price: 3500,
-        image: 'https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
-        category: 'sarees'
+        image: 'https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?auto=format&fit=crop&q=80&w=600',
+        category: 'Sarees'
     },
     {
         id: 2,
         name: 'Traditional Cotton Dhoti',
         price: 800,
-        image: 'https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
-        category: 'dhotis'
+        image: 'https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?auto=format&fit=crop&q=80&w=600',
+        category: 'Dhotis'
     },
     {
         id: 3,
-        name: 'Handloom Kurta Set',
+        name: 'Indigo Print Cotton Kurta',
         price: 1200,
-        image: 'https://images.unsplash.com/photo-1578632292335-df3abbb0d586?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80',
-        category: 'kurtas'
+        image: 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?auto=format&fit=crop&q=80&w=600',
+        category: 'Kurtas'
+    },
+    {
+        id: 4,
+        name: 'Pure Tussar Silk Saree',
+        price: 4200,
+        image: 'https://images.unsplash.com/photo-1610030469915-9a88e4708767?auto=format&fit=crop&q=80&w=600',
+        category: 'Sarees'
+    },
+    {
+        id: 5,
+        name: 'Phulkari Embroidered Kurti',
+        price: 1850,
+        image: 'https://images.unsplash.com/photo-1605518295931-aa3e9354c0b4?auto=format&fit=crop&q=80&w=600',
+        category: 'Kurtis'
+    },
+    {
+        id: 6,
+        name: 'Kerala Silk Mundu',
+        price: 2100,
+        image: 'https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?auto=format&fit=crop&q=80&w=600',
+        category: 'Dhotis'
+    },
+    {
+        id: 7,
+        name: 'Lucknow Chikankari Kurta',
+        price: 2400,
+        image: 'https://images.unsplash.com/photo-1595967783875-c371f35d8049?auto=format&fit=crop&q=80&w=600',
+        category: 'Kurtas'
+    },
+    {
+        id: 8,
+        name: 'Kanjeevaram Silk Saree',
+        price: 6500,
+        image: 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?auto=format&fit=crop&q=80&w=600',
+        category: 'Sarees'
+    },
+    {
+        id: 9,
+        name: 'Hand Block Print Saree',
+        price: 1500,
+        image: 'https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?auto=format&fit=crop&q=80&w=600',
+        category: 'Sarees'
+    },
+    {
+        id: 10,
+        name: 'Hand-painted Kalamkari Saree',
+        price: 3200,
+        image: 'https://images.unsplash.com/photo-1610030469915-9a88e4708767?auto=format&fit=crop&q=80&w=600',
+        category: 'Sarees'
     }
 ];
 
@@ -316,17 +379,19 @@ const cartStyles = `
         }
         
         .cart-item-image {
-            width: 80px;
-            height: 80px;
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            flex-shrink: 0;
+            width: 80px !important;
+            height: 80px !important;
+            border-radius: var(--radius-md) !important;
+            overflow: hidden !important;
+            flex-shrink: 0 !important;
+            background-color: var(--tertiary-color);
         }
         
         .cart-item-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            display: block !important;
         }
         
         .cart-item-details {

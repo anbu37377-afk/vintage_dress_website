@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Traditional & Festive Wear - GramVastra</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,6 +53,8 @@
             font-weight: 900;
             margin-bottom: var(--spacing-md);
             line-height: 1.1;
+            color: #FFFFFF;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
         .hero-festive-subtitle {
@@ -96,14 +99,21 @@
             border-radius: var(--radius-xl);
             overflow: hidden;
             box-shadow: var(--shadow-lg);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            transition: transform var(--transition-medium);
+            height: 100%;
+        }
+
+        .craftsmanship-card:hover {
+            transform: translateY(-10px);
         }
 
         .craftsmanship-image {
+            height: 320px;
             background-size: cover;
-            background-position: center;
+            background-position: top;
+            width: 100%;
         }
 
         .craftsmanship-content {
@@ -111,6 +121,18 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex: 1;
+        }
+
+        .craftsmanship-content p {
+            margin-bottom: var(--spacing-md);
+            flex: 1;
+        }
+
+        .craftsmanship-content .btn {
+            width: fit-content;
         }
 
         .craftsmanship-content h3 {
@@ -156,7 +178,9 @@
 
         .visual-storytelling {
             padding: var(--spacing-xxl) 0;
-            background-color: var(--tertiary-color);
+            background-color: var(--surface);
+            position: relative;
+            z-index: 1;
         }
 
         .story-grid {
@@ -179,13 +203,28 @@
         }
 
         .story-image {
-            height: 200px;
+            height: 300px;
             background-size: cover;
-            background-position: center;
+            background-position: top;
+            width: 100%;
         }
 
         .story-content {
             padding: var(--spacing-md);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex: 1;
+        }
+
+        .story-content p {
+            margin-bottom: var(--spacing-md);
+            flex: 1;
+        }
+
+        .story-content .btn {
+            width: fit-content;
         }
 
         .story-content h3 {
@@ -265,11 +304,13 @@
         .btn-white {
             background-color: var(--tertiary-color);
             color: var(--primary-color);
+            border: 1px solid var(--tertiary-color);
         }
 
         .btn-white:hover {
-            background-color: var(--surface);
-            color: var(--primary-color);
+            background-color: transparent;
+            color: var(--tertiary-color);
+            border-color: var(--tertiary-color);
         }
 
         @media (max-width: 768px) {
@@ -365,10 +406,30 @@
                 max-width: 300px;
             }
 
-            /* Section Padding */
+            /* Tablet/Tab View Alignment Fix */
+            @media (min-width: 481px) and (max-width: 1150px) {
+
+                .craftsmanship-grid,
+                .story-grid,
+                .authenticity-grid {
+                    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                    justify-content: center;
+                    display: grid;
+                    gap: var(--spacing-lg);
+                }
+
+                .story-grid>*:last-child:nth-child(odd),
+                .craftsmanship-grid>*:last-child:nth-child(odd) {
+                    grid-column: span 1;
+                    max-width: 100%;
+                    margin: 0;
+                }
+            }
+
             .craftsmanship-showcase,
-            .sustainable-section,
-            .artisan-stories,
+            .sustainable-fashion,
+            .visual-storytelling,
+            .authenticity-highlights,
             .festive-cta {
                 padding: var(--spacing-xl) 0;
             }
@@ -382,12 +443,12 @@
         <div class="header-background"></div>
         <div class="container">
             <nav class="navbar">
-                <div class="nav-brand">
+                <a href="index.html" class="nav-brand">
                     <div class="logo">
                         <i class="fas fa-leaf"></i>
                         <span>GramVastra</span>
                     </div>
-                </div>
+                </a>
 
                 <div class="nav-menu" id="navMenu">
                     <a href="index.html" class="nav-link">
@@ -485,8 +546,8 @@
             <h2 class="section-title fade-in">The Art of Festive Craftsmanship</h2>
             <div class="craftsmanship-grid">
                 <div class="craftsmanship-card scale-in">
-                    <div class="craftsmanship-card-image"
-                        style="background-image: url('https://media.istockphoto.com/id/93355119/photo/indian-saris.jpg?s=612x612&w=0&k=20&c=afmfiTJg0VAmIY6P_TJ_JYsTfGhUdevv18WXQRUZ8NQ=');">
+                    <div class="craftsmanship-image"
+                        style="background-image: url('https://i.pinimg.com/736x/2a/38/43/2a384315c04ab46d2d38541d9b4ff0c5.jpg');">
                     </div>
                     <div class="craftsmanship-content">
                         <h3>Silk Weaving Magic</h3>
@@ -497,8 +558,8 @@
                 </div>
 
                 <div class="craftsmanship-card scale-in">
-                    <div class="craftsmanship-card-image"
-                        style="background-image: url('https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=800&q=80');">
+                    <div class="craftsmanship-image"
+                        style="background-image: url('https://images.news18.com/webstories/uploads/2025/03/Pre-Draped-Saree-2025-03-a27720cf0a7a07a0d3c26416f49beab0.png');">
                     </div>
                     <div class="craftsmanship-content">
                         <h3>Block Printing Art</h3>
@@ -510,7 +571,7 @@
 
                 <div class="craftsmanship-card scale-in">
                     <div class="craftsmanship-image"
-                        style="background-image: url('https://images.unsplash.com/photo-1543322748-028bb4658e3e?auto=format&fit=crop&w=800&q=80');">
+                        style="background-image: url('https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?auto=format&fit=crop&q=80&w=800');">
                     </div>
                     <div class="craftsmanship-content">
                         <h3>Embroidery Excellence</h3>
@@ -576,7 +637,7 @@
 
                 <div class="story-card scale-in">
                     <div class="story-image"
-                        style="background-image: url('https://images.unsplash.com/photo-1517016001691-2854440f85c1?auto=format&fit=crop&w=800&q=80');">
+                        style="background-image: url('https://assets0.mirraw.com/images/611124/62a_zoom.jpg?1536829222');">
                     </div>
                     <div class="story-content">
                         <h3>Festival Celebrations</h3>
@@ -587,7 +648,7 @@
 
                 <div class="story-card scale-in">
                     <div class="story-image"
-                        style="background-image: url('https://images.unsplash.com/photo-1536627242417-2073628c6e21?auto=format&fit=crop&w=800&q=80');">
+                        style="background-image: url('https://i.pinimg.com/736x/b6/6c/82/b66c82ba43c689ad0ce5182e58cb6223.jpg');">
                     </div>
                     <div class="story-content">
                         <h3>Cultural Heritage</h3>
@@ -646,9 +707,9 @@
                 <h2>Ready to Celebrate in Tradition?</h2>
                 <p>Explore our exclusive festive collection and bring home the essence of village craftsmanship</p>
                 <div class="cta-buttons">
-                    <a href="shop.html?collection=festive" class="btn btn-primary btn-large">Shop Festive Collection</a>
+                    <a href="shop.html?collection=festive" class="btn btn-white btn-large">Shop Festive Collection</a>
                     <a href="categories.html" class="btn btn-white btn-large">Browse All Categories</a>
-                    <a href="about.html" class="btn btn-outline btn-large">Meet Our Artisans</a>
+                    <a href="about.html" class="btn btn-white btn-large">Meet Our Artisans</a>
                 </div>
             </div>
         </div>

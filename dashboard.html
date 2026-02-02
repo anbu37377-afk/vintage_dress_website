@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - GramVastra</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,77 +16,23 @@
 </head>
 
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="header-background"></div>
-        <div class="container">
-            <nav class="navbar">
-                <div class="nav-brand">
-                    <div class="logo">
-                        <i class="fas fa-leaf"></i>
-                        <span>GramVastra</span>
-                    </div>
-                </div>
-
-                <div class="nav-menu" id="navMenu">
-                    <a href="index.html" class="nav-link">
-                        <span>Home</span>
-                    </a>
-                    <a href="home2.html" class="nav-link">
-                        <span>Home 2</span>
-                    </a>
-                    <a href="shop.html" class="nav-link">
-                        <span>Shop</span>
-                    </a>
-                    <a href="categories.html" class="nav-link">
-                        <span>Categories</span>
-                    </a>
-                    <a href="about.html" class="nav-link">
-                        <span>About</span>
-                    </a>
-                    <a href="pages/blog.html" class="nav-link">
-                        <span>Blog</span>
-                    </a>
-                    <a href="dashboard.html" class="nav-link active">
-                        <span>Dashboard</span>
-                    </a>
-                    <a href="pages/contact.html" class="nav-link">
-                        <span>Contact</span>
-                    </a>
-
-                    <!-- Mobile Menu Items -->
-                    <a href="pages/login.html" class="nav-link mobile-only">
-                        <span>Login</span>
-                    </a>
-                    <a href="pages/signup.html" class="nav-link mobile-only">
-                        <span>Sign Up</span>
-                    </a>
-                </div>
-
-                <div class="nav-actions">
-                    <a href="dashboard.html" class="dashboard-icon" aria-label="Dashboard">
-                       
-                    </a>
-                    <button class="theme-toggle" id="themeToggle">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                    <button class="cart-btn" id="cartBtn">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count">0</span>
-                    </button>
-                    <a href="pages/login.html" class="btn btn-outline">Login</a>
-                    <a href="pages/signup.html" class="btn btn-primary">Sign Up</a>
-                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <!-- Dashboard Sidebar Toggle -->
+    <button class="dashboard-sidebar-toggle" id="sidebarToggle" aria-label="Toggle Sidebar">
+        <i class="fas fa-bars"></i>
+    </button>
 
     <div class="dashboard-container">
         <!-- Sidebar Navigation (Desktop) -->
-        <aside class="dashboard-sidebar">
+        <aside class="dashboard-sidebar" id="dashboardSidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>GramVastra</span>
+                </a>
+                <button class="sidebar-close" id="sidebarClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
             <ul class="sidebar-menu">
                 <li>
                     <a href="#" class="sidebar-link active">
@@ -121,6 +68,12 @@
                     <a href="#" class="sidebar-link">
                         <i class="fas fa-cog"></i>
                         <span>Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="pages/login.html" class="sidebar-link logout-link">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
                     </a>
                 </li>
             </ul>
@@ -337,6 +290,33 @@
             if (dateElement) {
                 dateElement.textContent = today.toLocaleDateString('en-US', dateOptions);
             }
+
+            // Sidebar Toggle Logic
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebarClose = document.getElementById('sidebarClose');
+            const sidebar = document.getElementById('dashboardSidebar');
+
+            if (sidebarToggle && sidebar) {
+                sidebarToggle.addEventListener('click', () => {
+                    sidebar.classList.add('active');
+                });
+            }
+
+            if (sidebarClose && sidebar) {
+                sidebarClose.addEventListener('click', () => {
+                    sidebar.classList.remove('active');
+                });
+            }
+
+            // Close sidebar on link click (mobile)
+            const sidebarLinks = document.querySelectorAll('.sidebar-link');
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth < 992) {
+                        sidebar.classList.remove('active');
+                    }
+                });
+            });
         });
     </script>
 </body>

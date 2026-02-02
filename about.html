@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - GramVastra Village Heritage</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -252,7 +253,7 @@
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: var(--spacing-lg);
             margin-top: var(--spacing-xl);
         }
@@ -297,7 +298,13 @@
             }
 
             .stats-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            @media (max-width: 480px) {
+                .stats-grid {
+                    grid-template-columns: 1fr;
+                }
             }
         }
     </style>
@@ -309,12 +316,12 @@
         <div class="header-background"></div>
         <div class="container">
             <nav class="navbar">
-                <div class="nav-brand">
+                <a href="index.html" class="nav-brand">
                     <div class="logo">
                         <i class="fas fa-leaf"></i>
                         <span>GramVastra</span>
                     </div>
-                </div>
+                </a>
 
                 <div class="nav-menu" id="navMenu">
                     <a href="index.html" class="nav-link"><span>Home</span></a>
@@ -392,9 +399,9 @@
                     </div>
                 </div>
                 <div class="heritage-image fade-in">
-                    <img src="https://images.unsplash.com/photo-1610492421943-4e6727782dc7?auto=format&fit=crop&q=80&w=800"
+                    <img src="https://images.stockcake.com/public/a/7/e/a7e83f75-d6f3-419e-8b30-4d57aaa6f053_large/artisan-weaving-textiles-stockcake.jpg"
                         alt="Heritage Weaving Artisan"
-                        style="width: 100%; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg);">
+                        style="width: 100%; height: 500px; object-fit: cover; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg);">
                 </div>
             </div>
         </div>
@@ -434,7 +441,7 @@
             <div class="artisans-grid">
                 <div class="artisan-card scale-in">
                     <div class="artisan-image"
-                        style="background-image: url('https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80');">
+                        style="background-image: url('https://images.unsplash.com/photo-1582298538104-fe2e74c27f59?auto=format&fit=crop&q=80&w=800');">
                     </div>
                     <div class="artisan-content">
                         <h3 class="artisan-name">Ramesh Kumar</h3>
@@ -446,7 +453,7 @@
 
                 <div class="artisan-card scale-in">
                     <div class="artisan-image"
-                        style="background-image: url('https://images.unsplash.com/photo-1473445733995-882ed556f090?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        style="background-image: url('https://i.pinimg.com/236x/41/40/ac/4140acc7e1c1981f2a9eebfb2b7a2290.jpg');">
                     </div>
                     <div class="artisan-content">
                         <h3 class="artisan-name">Sita Devi</h3>
@@ -458,7 +465,7 @@
 
                 <div class="artisan-card scale-in">
                     <div class="artisan-image"
-                        style="background-image: url('https://images.unsplash.com/photo-1528160216117-5984ba5f524d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        style="background-image: url('https://plus.unsplash.com/premium_photo-1708275672423-837db6d3d700?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmxhY2slMjBtYW4lMjBwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D');">
                     </div>
                     <div class="artisan-content">
                         <h3 class="artisan-name">Mohammad Rafiq</h3>

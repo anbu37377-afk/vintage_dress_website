@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop - GramVastra Village Clothing Store</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -397,16 +398,81 @@
             cursor: not-allowed;
         }
 
-        @media (max-width: 768px) {
+        .mobile-filter-toggle {
+            display: none;
+            width: 100%;
+            padding: var(--spacing-sm) var(--spacing-md);
+            background-color: var(--primary-color);
+            color: var(--tertiary-color);
+            border: none;
+            border-radius: var(--radius-sm);
+            margin-bottom: var(--spacing-lg);
+            font-weight: 600;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+        }
+
+        @media (max-width: 1024px) {
+            .mobile-filter-toggle {
+                display: flex;
+            }
+
             .shop-container {
                 grid-template-columns: 1fr;
             }
 
             .filters-sidebar {
-                position: static;
+                position: fixed;
+                top: 0;
+                left: -320px;
+                width: 300px;
+                height: 100vh;
+                z-index: 2000;
+                box-shadow: var(--shadow-xl);
+                transition: left var(--transition-medium);
+                overflow-y: auto;
+                border-radius: 0;
+            }
+
+            .filters-sidebar.active {
+                left: 0;
+            }
+
+            .filter-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0, 0, 0, 0.5);
+                backdrop-filter: blur(4px);
+                z-index: 1500;
+            }
+
+            .filter-overlay.active {
+                display: block;
+            }
+
+            .sidebar-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
                 margin-bottom: var(--spacing-lg);
             }
 
+            .close-filters {
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                color: var(--primary-color);
+                cursor: pointer;
+            }
+        }
+
+        @media (max-width: 768px) {
             .product-grid {
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
                 gap: var(--spacing-md);
@@ -440,12 +506,12 @@
         <div class="header-background"></div>
         <div class="container">
             <nav class="navbar">
-                <div class="nav-brand">
+                <a href="index.html" class="nav-brand">
                     <div class="logo">
                         <i class="fas fa-leaf"></i>
                         <span>GramVastra</span>
                     </div>
-                </div>
+                </a>
                 <div class="nav-menu" id="navMenu">
                     <a href="index.html" class="nav-link">
                         <span>Home</span>
@@ -514,8 +580,22 @@
     <section class="shop-layout">
         <div class="container">
             <div class="shop-container">
+                <button class="mobile-filter-toggle" id="mobileFilterToggle">
+                    <i class="fas fa-filter"></i>
+                    Show Filters
+                </button>
+
+                <!-- Filter Overlay -->
+                <div class="filter-overlay" id="filterOverlay"></div>
+
                 <!-- Filters Sidebar -->
-                <aside class="filters-sidebar">
+                <aside class="filters-sidebar" id="filtersSidebar">
+                    <div class="sidebar-header mobile-only">
+                        <h3>Filters</h3>
+                        <button class="close-filters" id="closeFilters">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
                     <div class="filter-section">
                         <h3 class="filter-title" onclick="toggleFilter(this)">
                             Categories
@@ -573,7 +653,7 @@
                 <!-- Main Content -->
                 <main class="main-content">
                     <div class="shop-header">
-                        <div class="results-count">Showing <span id="result-count">6</span> products</div>
+                        <div class="results-count">Showing <span id="result-count">10</span> products</div>
                         <div class="sort-dropdown">
                             <label for="sort-select">Sort by:</label>
                             <select id="sort-select" onchange="sortProducts()">
@@ -586,57 +666,227 @@
 
                     <!-- Product Grid -->
                     <div class="product-grid" id="productGrid">
+                        <!-- Product 1 -->
                         <div class="product-card scale-in">
                             <div class="product-image">
-                                <img src="https://media.istockphoto.com/id/93355119/photo/indian-saris.jpg?s=612x612&w=0&k=20&c=afmfiTJg0VAmIY6P_TJ_JYsTfGhUdevv18WXQRUZ8NQ="
+                                <img src="https://cdn.shopify.com/s/files/1/1950/6115/files/WhatsApp_Image_2024-03-27_at_20.18.49_480x480.jpg?v=1712393008"
                                     alt="Handwoven Banarasi Silk Saree">
-                                <div class="product-badges">
-                                    <span class="product-badge new">New</span>
-                                </div>
-                                <div class="product-actions">
-                                    <button class="action-btn" title="Quick View">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                </div>
+                                <div class="product-badges"><span class="product-badge new">New</span></div>
+                                <div class="product-actions"><button class="action-btn"><i
+                                            class="fas fa-eye"></i></button></div>
                             </div>
                             <div class="product-content">
                                 <div class="product-category">Sarees</div>
                                 <h3 class="product-name">Handwoven Banarasi Silk Saree</h3>
-                                <p class="product-description">Exquisite traditional Banarasi silk with intricate gold
-                                    zari work</p>
+                                <p class="product-description">Exquisite traditional Banarasi silk with gold zari work
+                                </p>
                                 <div class="product-footer">
-                                    <div class="product-price">
-                                        <span class="current-price">₹3,500</span>
-                                    </div>
-                                    <button class="add-to-cart"
-                                        onclick="addToCart({id: 1, name: 'Handwoven Banarasi Silk Saree', price: 3500, image: 'https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80'})">
+                                    <div class="product-price"><span class="current-price">₹3,500</span></div>
+                                    <button class="add-to-cart" onclick="addToCart(1)">
                                         <i class="fas fa-shopping-cart"></i>
                                     </button>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Product 2 -->
                         <div class="product-card scale-in">
                             <div class="product-image">
-                                <img src="https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                                <img src="https://i.pinimg.com/736x/80/ed/ac/80edac0e8846939e1db831a0751c7b98.jpg"
                                     alt="Cotton Dhoti">
-                                <div class="product-actions">
-                                    <button class="action-btn" title="Quick View">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                </div>
+                                <div class="product-actions"><button class="action-btn"><i
+                                            class="fas fa-eye"></i></button></div>
                             </div>
                             <div class="product-content">
                                 <div class="product-category">Dhotis</div>
                                 <h3 class="product-name">Traditional Cotton Dhoti</h3>
-                                <p class="product-description">Comfortable pure cotton dhoti perfect for daily wear and
-                                    ceremonies</p>
+                                <p class="product-description">Comfortable pure cotton dhoti perfect for daily wear</p>
+                                <div class="product-footer">
+                                    <div class="product-price"><span class="current-price">₹800</span></div>
+                                    <button class="add-to-cart" onclick="addToCart(2)">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 3 -->
+                        <div class="product-card scale-in">
+                            <div class="product-image">
+                                <img src="https://stylum.in/cdn/shop/products/INDIGOBIRD_5.jpg?v=1747974168"
+                                    alt="Indigo Print Cotton Kurta">
+                                <div class="product-badges"><span class="product-badge">Indigo</span></div>
+                                <div class="product-actions"><button class="action-btn"><i
+                                            class="fas fa-eye"></i></button></div>
+                            </div>
+                            <div class="product-content">
+                                <div class="product-category">Kurtas</div>
+                                <h3 class="product-name">Indigo Print Cotton Kurta</h3>
+                                <p class="product-description">Traditional hand-printed indigo cotton kurta</p>
+                                <div class="product-footer">
+                                    <div class="product-price"><span class="current-price">₹1,200</span></div>
+                                    <button class="add-to-cart" onclick="addToCart(3)">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 4 -->
+                        <div class="product-card scale-in">
+                            <div class="product-image">
+                                <img src="https://clothsvilla.com/cdn/shop/products/12006-1_80428a2e-f336-43b0-b0e3-dc02390f11f3_1024x1024.jpg?v=1698779035"
+                                    alt="Tussar Silk Saree">
+                                <div class="product-badges"><span class="product-badge sale">Sale</span></div>
+                                <div class="product-actions"><button class="action-btn"><i
+                                            class="fas fa-eye"></i></button></div>
+                            </div>
+                            <div class="product-content">
+                                <div class="product-category">Sarees</div>
+                                <h3 class="product-name">Pure Tussar Silk Saree</h3>
+                                <p class="product-description">Elegant Tussar silk featuring authentic tribal motifs</p>
                                 <div class="product-footer">
                                     <div class="product-price">
-                                        <span class="current-price">₹800</span>
+                                        <span class="current-price">₹4,200</span>
+                                        <span class="original-price">₹5,000</span>
                                     </div>
-                                    <button class="add-to-cart"
-                                        onclick="addToCart({id: 2, name: 'Traditional Cotton Dhoti', price: 800, image: 'https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80'})">
+                                    <button class="add-to-cart" onclick="addToCart(4)">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 5 -->
+                        <div class="product-card scale-in">
+                            <div class="product-image">
+                                <img src="https://trinjann.com/wp-content/uploads/2022/08/TRJ146-5-scaled.jpg"
+                                    alt="Phulkari Kurti">
+                                <div class="product-actions"><button class="action-btn"><i
+                                            class="fas fa-eye"></i></button></div>
+                            </div>
+                            <div class="product-content">
+                                <div class="product-category">Kurtis</div>
+                                <h3 class="product-name">Phulkari Embroidered Kurti</h3>
+                                <p class="product-description">Vibrant hand-embroidered work on cotton base</p>
+                                <div class="product-footer">
+                                    <div class="product-price"><span class="current-price">₹1,850</span></div>
+                                    <button class="add-to-cart" onclick="addToCart(5)">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 6 -->
+                        <div class="product-card scale-in">
+                            <div class="product-image">
+                                <img src="https://images.jdmagicbox.com/quickquotes/images_main/silk-dhoti-kurta-set-for-men-802708837-8bzfx9zl.jpg"
+                                    alt="Kerala Silk Mundu">
+                                <div class="product-badges"><span class="product-badge">Premium</span></div>
+                                <div class="product-actions"><button class="action-btn"><i
+                                            class="fas fa-eye"></i></button></div>
+                            </div>
+                            <div class="product-content">
+                                <div class="product-category">Dhotis</div>
+                                <h3 class="product-name">Kerala Silk Mundu</h3>
+                                <p class="product-description">Traditional silk mundu with premium gold jari border</p>
+                                <div class="product-footer">
+                                    <div class="product-price"><span class="current-price">₹2,100</span></div>
+                                    <button class="add-to-cart" onclick="addToCart(6)">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 7 -->
+                        <div class="product-card scale-in">
+                            <div class="product-image">
+                                <img src=https://thechikanlabel.com/cdn/shop/files/Rubina_Dilaik.jpg?v=1736160987&width=1045"
+                                    alt="Chikankari Kurta">
+                                <div class="product-badges"><span class="product-badge">Handmade</span></div>
+                                <div class="product-actions"><button class="action-btn"><i
+                                            class="fas fa-eye"></i></button></div>
+                            </div>
+                            <div class="product-content">
+                                <div class="product-category">Kurtas</div>
+                                <h3 class="product-name">Lucknow Chikankari Kurta</h3>
+                                <p class="product-description">Intricate white-on-white hand embroidery on muslin cotton
+                                </p>
+                                <div class="product-footer">
+                                    <div class="product-price"><span class="current-price">₹2,400</span></div>
+                                    <button class="add-to-cart" onclick="addToCart(7)">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 8 -->
+                        <div class="product-card scale-in">
+                            <div class="product-image">
+                                <img src="https://pub-95ccf2d427eb4955a7de1c41d3fa57dd.r2.dev/blog-g3fashion-com/2021/04/Kajal-Agarwal-in-Kanjivaram-Silk-Saree-1024x1024.jpg"
+                                    alt="Kanjeevaram Saree">
+                                <div class="product-badges"><span class="product-badge">Bridal</span></div>
+                                <div class="product-actions"><button class="action-btn"><i
+                                            class="fas fa-eye"></i></button></div>
+                            </div>
+                            <div class="product-content">
+                                <div class="product-category">Sarees</div>
+                                <h3 class="product-name">Kanjeevaram Silk Saree</h3>
+                                <p class="product-description">Traditional South Indian silk with temple border design
+                                </p>
+                                <div class="product-footer">
+                                    <div class="product-price"><span class="current-price">₹6,500</span></div>
+                                    <button class="add-to-cart" onclick="addToCart(8)">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 9 -->
+                        <div class="product-card scale-in">
+                            <div class="product-image">
+                                <img src="https://www.craftyle.com/cdn/shop/files/jet-black-hand-block-mulberryi-pure-silk-saree-cwsblxxx0041-476.webp?v=1767553262&width=1100"
+                                    alt="Block Print Saree">
+                                <div class="product-actions"><button class="action-btn"><i
+                                            class="fas fa-eye"></i></button></div>
+                            </div>
+                            <div class="product-content">
+                                <div class="product-category">Sarees</div>
+                                <h3 class="product-name">Hand Block Print Saree</h3>
+                                <p class="product-description">Organic cotton saree with natural dye block prints</p>
+                                <div class="product-footer">
+                                    <div class="product-price"><span class="current-price">₹1,500</span></div>
+                                    <button class="add-to-cart" onclick="addToCart(9)">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product 10 -->
+                        <div class="product-card scale-in">
+                            <div class="product-image">
+                                <img src="https://southindiafashion.com/wp-content/uploads/2022/05/pooja-hegde-in-pista-green-saree-by-archana-jaju-1.jpg"
+                                    alt="Kalamkari Saree">
+                                <div class="product-badges"><span class="product-badge sale">Sale</span></div>
+                                <div class="product-actions"><button class="action-btn"><i
+                                            class="fas fa-eye"></i></button></div>
+                            </div>
+                            <div class="product-content">
+                                <div class="product-category">Sarees</div>
+                                <h3 class="product-name">Hand-painted Kalamkari Saree</h3>
+                                <p class="product-description">Detailed hand-painted mythological stories on pure cotton
+                                </p>
+                                <div class="product-footer">
+                                    <div class="product-price">
+                                        <span class="current-price">₹3,200</span>
+                                        <span class="original-price">₹3,800</span>
+                                    </div>
+                                    <button class="add-to-cart" onclick="addToCart(10)">
                                         <i class="fas fa-shopping-cart"></i>
                                     </button>
                                 </div>
@@ -753,6 +1003,34 @@
         function sortProducts() {
             showNotification('Products sorted!');
         }
+
+        // Mobile Filter Toggle
+        const mobileFilterToggle = document.getElementById('mobileFilterToggle');
+        const filtersSidebar = document.getElementById('filtersSidebar');
+        const filterOverlay = document.getElementById('filterOverlay');
+        const closeFilters = document.getElementById('closeFilters');
+
+        if (mobileFilterToggle) {
+            mobileFilterToggle.addEventListener('click', () => {
+                filtersSidebar.classList.add('active');
+                filterOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        }
+
+        const closeSidebar = () => {
+            filtersSidebar.classList.remove('active');
+            filterOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        };
+
+        if (closeFilters) closeFilters.addEventListener('click', closeSidebar);
+        if (filterOverlay) filterOverlay.addEventListener('click', closeSidebar);
+
+        applyFilters = () => {
+            closeSidebar();
+            showNotification('Filters applied successfully!');
+        };
     </script>
 </body>
 
