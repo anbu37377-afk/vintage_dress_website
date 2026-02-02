@@ -1102,9 +1102,7 @@ a:hover {
   }
 
   .nav-actions .btn {
-    display: flex;
-    padding: var(--spacing-xs) var(--spacing-sm);
-    font-size: 0.75rem;
+    display: none;
   }
 
   /* Icon Sizing for Mobile */

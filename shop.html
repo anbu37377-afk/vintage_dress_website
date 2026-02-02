@@ -40,8 +40,9 @@
 
         .shop-container {
             display: grid;
-            grid-template-columns: 280px 1fr;
+            grid-template-columns: 260px minmax(0, 1fr);
             gap: var(--spacing-xl);
+            align-items: start;
         }
 
         .filters-sidebar {
@@ -399,7 +400,7 @@
         }
 
         .mobile-filter-toggle {
-            display: none;
+            display: none !important;
             width: 100%;
             padding: var(--spacing-sm) var(--spacing-md);
             background-color: var(--primary-color);
@@ -803,7 +804,7 @@
                         <!-- Product 7 -->
                         <div class="product-card scale-in">
                             <div class="product-image">
-                                <img src=https://thechikanlabel.com/cdn/shop/files/Rubina_Dilaik.jpg?v=1736160987&width=1045"
+                                <img src="https://thechikanlabel.com/cdn/shop/files/Rubina_Dilaik.jpg?v=1736160987&width=1045"
                                     alt="Chikankari Kurta">
                                 <div class="product-badges"><span class="product-badge">Handmade</span></div>
                                 <div class="product-actions"><button class="action-btn"><i

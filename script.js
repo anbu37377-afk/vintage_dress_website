@@ -278,70 +278,70 @@ const products = [
         id: 1,
         name: 'Handwoven Banarasi Silk Saree',
         price: 3500,
-        image: 'https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?auto=format&fit=crop&q=80&w=600',
+        image: 'https://cdn.shopify.com/s/files/1/1950/6115/files/WhatsApp_Image_2024-03-27_at_20.18.49_480x480.jpg?v=1712393008',
         category: 'Sarees'
     },
     {
         id: 2,
         name: 'Traditional Cotton Dhoti',
         price: 800,
-        image: 'https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?auto=format&fit=crop&q=80&w=600',
+        image: 'https://i.pinimg.com/736x/80/ed/ac/80edac0e8846939e1db831a0751c7b98.jpg',
         category: 'Dhotis'
     },
     {
         id: 3,
         name: 'Indigo Print Cotton Kurta',
         price: 1200,
-        image: 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?auto=format&fit=crop&q=80&w=600',
+        image: 'https://stylum.in/cdn/shop/products/INDIGOBIRD_5.jpg?v=1747974168',
         category: 'Kurtas'
     },
     {
         id: 4,
         name: 'Pure Tussar Silk Saree',
         price: 4200,
-        image: 'https://images.unsplash.com/photo-1610030469915-9a88e4708767?auto=format&fit=crop&q=80&w=600',
+        image: 'https://clothsvilla.com/cdn/shop/products/12006-1_80428a2e-f336-43b0-b0e3-dc02390f11f3_1024x1024.jpg?v=1698779035',
         category: 'Sarees'
     },
     {
         id: 5,
         name: 'Phulkari Embroidered Kurti',
         price: 1850,
-        image: 'https://images.unsplash.com/photo-1605518295931-aa3e9354c0b4?auto=format&fit=crop&q=80&w=600',
+        image: 'https://trinjann.com/wp-content/uploads/2022/08/TRJ146-5-scaled.jpg',
         category: 'Kurtis'
     },
     {
         id: 6,
         name: 'Kerala Silk Mundu',
         price: 2100,
-        image: 'https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?auto=format&fit=crop&q=80&w=600',
+        image: 'https://images.jdmagicbox.com/quickquotes/images_main/silk-dhoti-kurta-set-for-men-802708837-8bzfx9zl.jpg',
         category: 'Dhotis'
     },
     {
         id: 7,
         name: 'Lucknow Chikankari Kurta',
         price: 2400,
-        image: 'https://images.unsplash.com/photo-1595967783875-c371f35d8049?auto=format&fit=crop&q=80&w=600',
+        image: 'https://thechikanlabel.com/cdn/shop/files/Rubina_Dilaik.jpg?v=1736160987&width=1045',
         category: 'Kurtas'
     },
     {
         id: 8,
         name: 'Kanjeevaram Silk Saree',
         price: 6500,
-        image: 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?auto=format&fit=crop&q=80&w=600',
+        image: 'https://pub-95ccf2d427eb4955a7de1c41d3fa57dd.r2.dev/blog-g3fashion-com/2021/04/Kajal-Agarwal-in-Kanjivaram-Silk-Saree-1024x1024.jpg',
         category: 'Sarees'
     },
     {
         id: 9,
         name: 'Hand Block Print Saree',
         price: 1500,
-        image: 'https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?auto=format&fit=crop&q=80&w=600',
+        image: 'https://www.craftyle.com/cdn/shop/files/jet-black-hand-block-mulberryi-pure-silk-saree-cwsblxxx0041-476.webp?v=1767553262&width=1100',
         category: 'Sarees'
     },
     {
         id: 10,
         name: 'Hand-painted Kalamkari Saree',
         price: 3200,
-        image: 'https://images.unsplash.com/photo-1610030469915-9a88e4708767?auto=format&fit=crop&q=80&w=600',
+        image: 'https://southindiafashion.com/wp-content/uploads/2022/05/pooja-hegde-in-pista-green-saree-by-archana-jaju-1.jpg',
         category: 'Sarees'
     }
 ];

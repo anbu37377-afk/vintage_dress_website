@@ -16,7 +16,7 @@
     <style>
         /* About Page Specific Styles */
         .about-hero {
-            padding: calc(80px + var(--spacing-xxl)) 0 var(--spacing-xxl);
+            padding: calc(130px + var(--spacing-xxl)) 0 var(--spacing-xxl);
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
             color: var(--tertiary-color);
             position: relative;
@@ -55,6 +55,7 @@
             max-width: 600px;
             margin: 0 auto var(--spacing-xl);
             opacity: 0.9;
+            color: var(--tertiary-color);
         }
 
         .heritage-story {
@@ -279,6 +280,10 @@
         }
 
         @media (max-width: 768px) {
+
+            .about-hero {
+                padding: calc(100px + var(--spacing-lg)) 0 var(--spacing-lg);
+            }
 
             .heritage-content,
             .mission-grid {
