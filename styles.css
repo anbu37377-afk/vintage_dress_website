@@ -365,6 +365,20 @@ a:hover {
   gap: var(--spacing-sm);
 }
 
+.nav-actions .btn {
+  width: 120px;
+  height: 45px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Ensure both buttons have the same box model */
+.btn-primary {
+  border: 2px solid transparent;
+}
+
 .theme-toggle,
 .cart-btn,
 .dashboard-icon {

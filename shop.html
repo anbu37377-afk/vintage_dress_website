@@ -406,8 +406,12 @@
             display: none;
         }
 
+        .mobile-only {
+            display: none;
+        }
+
         .mobile-filter-toggle {
-            display: none !important;
+            display: none;
             width: 100%;
             padding: var(--spacing-sm) var(--spacing-md);
             background-color: var(--primary-color);
@@ -424,11 +428,19 @@
 
         @media (max-width: 1024px) {
             .mobile-filter-toggle {
-                display: flex;
+                display: flex !important;
+            }
+
+            .mobile-only {
+                display: block;
             }
 
             .shop-container {
                 grid-template-columns: 1fr;
+            }
+
+            .main-content {
+                grid-column: auto;
             }
 
             .filters-sidebar {
