@@ -381,12 +381,22 @@
             }
 
             .card-image,
-            .story-image,
-            .sustainable-image {
+            .story-image {
                 width: 100%;
                 height: auto;
                 max-height: 300px;
                 object-fit: cover;
+            }
+
+            .sustainable-image {
+                max-height: none !important;
+                height: auto !important;
+            }
+
+            .sustainable-image img {
+                height: auto !important;
+                width: 100% !important;
+                object-fit: contain !important;
             }
 
             /* Festive Badges */
@@ -438,6 +448,25 @@
             .authenticity-highlights,
             .festive-cta {
                 padding: var(--spacing-xl) 0;
+            }
+        }
+
+        /* Tablet View Fix for Sustainable Fashion Section */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .sustainable-content {
+                grid-template-columns: 1fr;
+            }
+
+            .sustainable-image {
+                max-height: none !important;
+                height: auto !important;
+            }
+
+            .sustainable-image img {
+                height: auto !important;
+                width: 100% !important;
+                object-fit: contain !important;
+                /* Use contain to ensure no part of the image is cropped */
             }
         }
 
