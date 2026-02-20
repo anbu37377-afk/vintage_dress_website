@@ -178,14 +178,15 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0, 0, 0, 0.3);
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Increased opacity for better contrast in light mode */
         }
 
         .map-content {
             position: relative;
             z-index: 1;
             text-align: center;
-            color: var(--tertiary-color);
+            color: #FFFFFF;
         }
 
         .map-content h3 {
@@ -258,6 +259,29 @@
                 flex-direction: column;
                 align-items: center;
             }
+        }
+
+        /* Dark Mode Map Contrast Fix */
+        [data-theme="dark"] .map-overlay {
+            background-color: rgba(0, 0, 0, 0.6);
+            /* Darker overlay for better text contrast */
+        }
+
+        [data-theme="dark"] .map-content h3,
+        [data-theme="dark"] .map-content p {
+            color: #FFFEFA !important;
+            /* Force light text in dark mode */
+        }
+
+        [data-theme="dark"] .map-content .btn-white {
+            background-color: #FFFEFA;
+            color: #1A0E08;
+            border: none;
+        }
+
+        [data-theme="dark"] .map-content .btn-white:hover {
+            background-color: #F5F5DC;
+            color: #1A0E08;
         }
     </style>
 </head>

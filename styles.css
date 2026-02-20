@@ -47,7 +47,7 @@
   --transition-slow: 0.5s ease;
 }
 
-/* Dark Theme */
+/* Dark Theme Variables */
 [data-theme="dark"] {
   --text-primary: #F5F5DC;
   --text-secondary: #E8D5C4;
@@ -56,6 +56,35 @@
   --surface: #2C1810;
   --border: #5D4037;
   --tertiary-color: #3D2817;
+  /* Used for dark backgrounds in dark mode */
+  --primary-color: #D2691E;
+  /* Lighter terracotta for better contrast */
+  --accent-color: #E8D5C4;
+  /* Light beige/brown */
+}
+
+/* Global Dark Mode Button Overrides */
+[data-theme="dark"] .btn-primary {
+  background-color: var(--primary-color);
+  color: #FFFEFA !important;
+  /* Ensure text is always light on dark buttons */
+}
+
+[data-theme="dark"] .btn-primary:hover {
+  background-color: var(--accent-color);
+  color: #1A0E08 !important;
+  /* Dark text on light hover background */
+}
+
+[data-theme="dark"] .btn-outline {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+[data-theme="dark"] .btn-outline:hover {
+  background-color: var(--primary-color);
+  color: #FFFEFA !important;
+  /* White text on orange hover background */
 }
 
 /* Dark Mode Footer Styles */
